@@ -11,6 +11,11 @@ public class Persona {
 
     public Persona() {
     }
+
+    public Persona(String nombre) {
+        this.nombre = nombre;
+    }
+    
      
     public Persona(String nombre, int edad, String profesion, int telefono) {
         this.nombre = nombre;
@@ -50,6 +55,15 @@ public class Persona {
 
     public void setTelefono(int telefono) {
         this.telefono = telefono;
+    }
+    //to-string
+
+    @Override
+    public String toString() {
+        return  "Nombre=" + nombre + "\n"
+                + " Edad=" + edad + "\n"
+                + "Profesion=" + profesion + "\n "
+                + "Telefono=" + telefono ;
     }
     
 }

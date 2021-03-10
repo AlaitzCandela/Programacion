@@ -5,6 +5,7 @@
  */
 package Vista;
 
+import javax.swing.JOptionPane;
 import practica1_ejercicio1.Controlador;
 
 /**
@@ -106,16 +107,28 @@ public class Vprincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void TFopcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TFopcionActionPerformed
+ 
         if(Integer.parseInt(TFopcion.getText())==1){
             Controlador.Insertar();
         }
         else
             if(Integer.parseInt(TFopcion.getText())==2){
-                Controlador.ConsultarDatos();
+                String n=JOptionPane.showInputDialog(this,"Introduce el nombre de la persona");
+                try{
+                Controlador.ConsultarDatos(n);
+                }
+                catch(Exception e){
+                    JOptionPane.showMessageDialog(this,e.getClass()+e.getMessage());
+                }
             }
             else
                 if(Integer.parseInt(TFopcion.getText())==3){
+                    try{
                     Controlador.Consulta();
+                    }
+                    catch(Exception e){
+                    JOptionPane.showMessageDialog(this,e.getClass()+e.getMessage());
+                }
                 }
                     else
                         Controlador.Salir();

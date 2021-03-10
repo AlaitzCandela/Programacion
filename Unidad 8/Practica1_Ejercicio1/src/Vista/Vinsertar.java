@@ -298,7 +298,12 @@ private int telefono;
     }//GEN-LAST:event_BaceptarActionPerformed
 
     private void BsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BsalirActionPerformed
-       String n="vi";
+       TFnombre.setText("");
+       TFedad.setText("");
+       TFprofesion.setText("");
+       TFtelefono.setText("");
+       Bsalir.setVisible(false);
+        String n="vi";
         Controlador.Volver(n);
     }//GEN-LAST:event_BsalirActionPerformed
 

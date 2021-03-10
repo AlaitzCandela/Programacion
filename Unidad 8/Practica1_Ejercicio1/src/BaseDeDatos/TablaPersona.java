@@ -32,6 +32,7 @@ public class TablaPersona {
     public Persona ConsultarDatos(Persona p) throws Exception{
         String plantilla="SELECT * FROM personas WHERE lower(nombre)=?;";
         PreparedStatement ps=con.prepareStatement(plantilla);
+        ps.setString(1,p.getNombre());
         ResultSet resultado=ps.executeQuery();
         while(resultado.next()){
              p=new Persona();
@@ -44,13 +45,13 @@ public class TablaPersona {
         return p;
     }
     //consultar Todas las personas
-    public ArrayList<Persona> Consultar(Persona p) throws Exception{
+    public ArrayList<Persona> Consultar() throws Exception{
         ArrayList<Persona> lista=new ArrayList();
         String plantilla="SELECT * FROM personas;";
         PreparedStatement ps=con.prepareStatement(plantilla);
         ResultSet resultado=ps.executeQuery();
         while(resultado.next()){
-            p=new Persona();
+            Persona p=new Persona();
             p.setNombre(resultado.getString("Nombre"));
              p.setEdad(resultado.getInt("Edad"));
              p.setProfesion(resultado.getString("Profesion"));
@@ -59,7 +60,7 @@ public class TablaPersona {
              lista.add(p);
         }
        
-        return lista;
+        return lista; 
     }
     
     

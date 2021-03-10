@@ -13,21 +13,24 @@ import practica1_ejercicio1.Controlador;
  *
  * @author 1GDAW07
  */
-public class Vconsulta extends javax.swing.JDialog {
-private static Persona p;
+public class VconsultaTotal extends javax.swing.JDialog {
+private static ArrayList lista;
     /**
-     * Creates new form Vconsulta
+     * Creates new form VconsultaTotal
      */
-    public Vconsulta(java.awt.Frame parent, boolean modal,Persona p) {
+    public VconsultaTotal(java.awt.Frame parent, boolean modal,ArrayList lista) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
-        TAconsulta.setText("Nombre: "+p.getNombre()+"\n"
-                + "Edad: "+p.getEdad()+"\n"
-                + "Profesion: "+p.getProfesion()+"\n"
-                + "Telefono: "+p.getTelefono()+"\n");
+        String personas=" ";
+       for(int x=0;x<lista.size();x++){
+           personas+=(lista.get(x).toString()+"\n" 
+                +"---------------------------------"+"\n");
+            
+        }
+       TAconsultas.setText(personas);
+        
     }
-   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -40,7 +43,7 @@ private static Persona p;
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        TAconsulta = new javax.swing.JTextArea();
+        TAconsultas = new javax.swing.JTextArea();
         Baceptar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -48,10 +51,10 @@ private static Persona p;
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel1.setText("Consultas");
 
-        TAconsulta.setEditable(false);
-        TAconsulta.setColumns(20);
-        TAconsulta.setRows(5);
-        jScrollPane1.setViewportView(TAconsulta);
+        TAconsultas.setEditable(false);
+        TAconsultas.setColumns(20);
+        TAconsultas.setRows(5);
+        jScrollPane1.setViewportView(TAconsultas);
 
         Baceptar.setText("Aceptar");
         Baceptar.addActionListener(new java.awt.event.ActionListener() {
@@ -67,34 +70,34 @@ private static Persona p;
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(202, 202, 202)
+                        .addGap(226, 226, 226)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(29, Short.MAX_VALUE))
+                        .addGap(31, 31, 31)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 462, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(38, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(Baceptar)
-                .addGap(219, 219, 219))
+                .addGap(217, 217, 217))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Baceptar)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void BaceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BaceptarActionPerformed
-        String n="vc";
+        String n="vct";
         Controlador.Volver(n);
     }//GEN-LAST:event_BaceptarActionPerformed
 
@@ -115,20 +118,20 @@ private static Persona p;
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Vconsulta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VconsultaTotal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Vconsulta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VconsultaTotal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Vconsulta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VconsultaTotal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Vconsulta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VconsultaTotal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Vconsulta dialog = new Vconsulta(new javax.swing.JFrame(), true, p);
+                VconsultaTotal dialog = new VconsultaTotal(new javax.swing.JFrame(), true,lista);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -142,7 +145,7 @@ private static Persona p;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Baceptar;
-    private javax.swing.JTextArea TAconsulta;
+    private javax.swing.JTextArea TAconsultas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
