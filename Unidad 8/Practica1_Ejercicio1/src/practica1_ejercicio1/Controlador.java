@@ -47,7 +47,8 @@ private static VconsultaTotal vct;
        Persona persona=new Persona();
        persona=new Persona(n);
        p=tp.ConsultarDatos(persona);
-       vc=new Vconsulta(vp,true,p);
+       String datos=p.toString();
+       vc=new Vconsulta(vp,true,datos);
        vc.setVisible(true);
         
     }
