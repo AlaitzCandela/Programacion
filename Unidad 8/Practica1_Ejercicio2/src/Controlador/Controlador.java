@@ -85,15 +85,7 @@ private static Evento ev;
         vm=new Vmodificar(vp,true);
         vm.setVisible(true);
     }
-    public static void Volver(String n){
-        if(n.equals("va")){
-            va.dispose();
-        }
-        else
-            if(n.equals("vc")){
-                vc.dispose();
-            }
-    }
+    
     public static void Eventos(JComboBox eventos) throws Exception{
         ArrayList<Evento>nombres= new ArrayList();
         nombres=te.ConsultarDatos();
@@ -123,5 +115,31 @@ private static Evento ev;
         
         return DatosEvento;
     }
-    public static void Update(String l,String f,String hi,String hf,String a){}
+    public static boolean Update(String n,String l,String f,String hi,String hf,String a){
+        LocalDate fecha=LocalDate.parse(f);
+        LocalTime horaI=LocalTime.parse(hi);
+        LocalTime horaF=LocalTime.parse(hf);
+        int aforo=Integer.parseInt(a);
+        Evento e1=new Evento(n,l,fecha,horaI,horaF,aforo);
+        boolean mod=false;
+        try{
+            mod=te.Modificar(e1);
+            mod=true;
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        return mod;
+    }
+    public static void Volver(String n){
+        if(n.equals("va")){
+            va.dispose();
+        }
+        else
+            if(n.equals("vc")){
+                vc.dispose();
+            }
+            else
+                vm.dispose();
+    }
 }

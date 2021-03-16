@@ -75,7 +75,7 @@ public class TablaEventos {
             e.setFecha(resultado.getDate("Fecha").toLocalDate());
             e.setHoraInicio(resultado.getTime("HoraInicio").toLocalTime());
             e.setHoraFinal(resultado.getTime("HoraFin").toLocalTime());
-            e.setAforo(resultado.getInt(Integer.parseInt("Aforo")));
+            e.setAforo(resultado.getInt("Aforo"));
             
         }
         return e;
@@ -95,9 +95,25 @@ public class TablaEventos {
         return eventos;
         
     }
-    public void Modificar() throws Exception{
-        String plantilla="UPDATE eventos (Lugar,Fecha,HoraInicio,HoraFinal,Aforo) VALUES=(?,?,?,?,?);";
+    public boolean Modificar(Evento e) throws Exception{
+        String plantilla="UPDATE eventos SET Lugar=?,Fecha=?,HoraInicio=?,HoraFin=?,Aforo=? WHERE lower(Nombre)=?;";
         PreparedStatement ps=con.prepareStatement(plantilla);
+        ps.setString(6,e.getNombre());
+        ps.setString(1,e.getLugar());
+        Date date=Date.valueOf(e.getFecha());
+        Time time=Time.valueOf(e.getHoraInicio());
+        Time time2=Time.valueOf(e.getHoraFinal());
+        ps.setDate(2, date);
+        ps.setTime(3,time);
+        ps.setTime(4,time2);
+        ps.setInt(5, e.getAforo());
+        int n=ps.executeUpdate();
+        boolean update=false;
+        if(n!=1)
+            throw new Exception("La fila no se ha actualizado");
+        else
+            update=true;
+        return update;
         
     }
     

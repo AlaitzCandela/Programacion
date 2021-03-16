@@ -3,6 +3,7 @@ package Modelo;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 
 
 public class Evento {
@@ -12,6 +13,7 @@ public class Evento {
     private LocalTime horaInicio;
     private LocalTime horaFinal;
     private int aforo;
+    private ArrayList<Persona>Personas;
     //constructor
 
     public Evento() {
@@ -30,6 +32,17 @@ public class Evento {
         this.horaFinal = horaFinal;
         this.aforo = aforo;
     }
+
+    public Evento(String nombre, String lugar, LocalDate fecha, LocalTime horaInicio, LocalTime horaFinal, int aforo, ArrayList<Persona> Personas) {
+        this.nombre = nombre;
+        this.lugar = lugar;
+        this.fecha = fecha;
+        this.horaInicio = horaInicio;
+        this.horaFinal = horaFinal;
+        this.aforo = aforo;
+        this.Personas = Personas;
+    }
+    
     //get-set
 
     public String getNombre() {

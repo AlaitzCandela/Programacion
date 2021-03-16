@@ -9,6 +9,7 @@ import Controlador.Controlador;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -21,6 +22,7 @@ private String fecha;
 private String horaI;
 private String horaF;
 private String aforo;
+private String n;
     /**
      * Creates new form Vmodificar
      */
@@ -28,6 +30,7 @@ private String aforo;
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
+        Baceptar.setVisible(false);
         try{
         Controlador.Eventos(CBeventos);
         }
@@ -235,8 +238,11 @@ private String aforo;
     }// </editor-fold>//GEN-END:initComponents
 
     private void CBeventosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBeventosActionPerformed
-        if(CBeventos.getSelectedItem().equals("--Selecciona--")){
+       n="vm";
+        if(CBeventos.getSelectedItem().equals("--Seleccionar--")){
             System.out.println("Evento no seleccionado");
+            Controlador.Volver(n);
+            
         }
         else{
             String n=CBeventos.getSelectedItem().toString();
@@ -249,42 +255,59 @@ private String aforo;
             horaF=datos.get(4);
             aforo=datos.get(5);
         }
+        TFnombre.setText(nombre);
+        TFlugar.setText(lugar);
+        FTFfecha.setText(fecha);
+        FTFhoraInicio.setText(horaI);
+        FTFhoraFin.setText(horaF);
+        TFaforo.setText(aforo);
+        
         
         
     }//GEN-LAST:event_CBeventosActionPerformed
 
     private void TFlugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TFlugarActionPerformed
         if(!TFlugar.getText().equals(lugar)){
-            lugar=TFlugar.getText();
+            lugar=TFlugar.getText();  
         }
+        FTFfecha.requestFocus();
     }//GEN-LAST:event_TFlugarActionPerformed
 
     private void FTFfechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FTFfechaActionPerformed
         if(!FTFfecha.getText().equals(fecha)){
             fecha=FTFfecha.getText();
         }
+        FTFhoraInicio.requestFocus();
     }//GEN-LAST:event_FTFfechaActionPerformed
 
     private void FTFhoraInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FTFhoraInicioActionPerformed
         if(!FTFhoraInicio.getText().equals(horaI)){
             horaI=FTFhoraInicio.getText();
         }
+        FTFhoraFin.requestFocus();
     }//GEN-LAST:event_FTFhoraInicioActionPerformed
 
     private void FTFhoraFinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FTFhoraFinActionPerformed
        if(!FTFhoraFin.getText().equals(horaF)){
             horaF=FTFhoraFin.getText();
         }
+       TFaforo.requestFocus();
     }//GEN-LAST:event_FTFhoraFinActionPerformed
 
     private void TFaforoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TFaforoActionPerformed
         if(!TFaforo.getText().equals(aforo)){
             aforo=TFaforo.getText();
         }
+        Baceptar.setVisible(true);
     }//GEN-LAST:event_TFaforoActionPerformed
 
     private void BaceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BaceptarActionPerformed
-        Controlador.Update( lugar,fecha,horaI, horaF, aforo);
+      boolean mod=false;
+        mod=Controlador.Update(nombre,lugar,fecha,horaI, horaF, aforo);
+      if(mod==true){
+          JOptionPane.showMessageDialog(this,"Evento modificado Correctamente");
+      }
+      Controlador.Volver(n);
     }//GEN-LAST:event_BaceptarActionPerformed
 
     /**
