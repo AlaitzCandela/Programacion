@@ -5,7 +5,9 @@
  */
 package ModeloBD;
 
+import Modelo.*;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 
 
 public class TablaRelacion {
@@ -21,5 +23,20 @@ public class TablaRelacion {
         return con;
     }
     
+    public boolean Insertar(Persona p,Evento e) throws Exception{
+        boolean r=false;
+        String plantilla="INSERT INTO relacioneventopersona VALUES(?,?);";
+        PreparedStatement ps=con.prepareStatement(plantilla);
+        ps.setString(1,p.getDni());
+        ps.setString(2,e.getNombre());
+        
+        int n=ps.executeUpdate();
+        ps.close();
+         if(n!=1)
+            throw new Exception("La Relacion no se ha guardado");
+        else
+            r=true;
+        return r;
+    }
     
 }

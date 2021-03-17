@@ -7,16 +7,15 @@ public class Persona {
    private String nombre;
    private String apellido;
    private String dni;
-   private String nombreEmpresa;
    private ArrayList <Evento> eventos;
+   private Empresa e;
    
    //Constructor
 
-    public Persona(String nombre, String apellido, String dni, String nombreEmpresa, ArrayList<Evento> eventos) {
+    public Persona(String nombre, String apellido, String dni, ArrayList<Evento> eventos) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
-        this.nombreEmpresa = nombreEmpresa;
         this.eventos = eventos;
     }
 
@@ -27,6 +26,14 @@ public class Persona {
         this.nombre = nombre;
         this.eventos = eventos;
     }
+
+    public Persona(String nombre, String apellido, String dni, Empresa e) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.dni = dni;
+        this.e = e;
+    }
+    
    //Get-set
 
     public String getNombre() {
@@ -53,14 +60,7 @@ public class Persona {
         this.dni = dni;
     }
 
-    public String getNombreEmpresa() {
-        return nombreEmpresa;
-    }
-
-    public void setNombreEmpresa(String nombreEmpresa) {
-        this.nombreEmpresa = nombreEmpresa;
-    }
-
+   
     public ArrayList<Evento> getEventos() {
         return eventos;
     }
@@ -72,7 +72,7 @@ public class Persona {
 
     @Override
     public String toString() {
-        return "Nombre=" + nombre + ", Apellido=" + apellido + ", Dni=" + dni + ", NombreEmpresa=" + nombreEmpresa + ", Eventos=" + eventos ;
+        return "Nombre=" + nombre + ", Apellido=" + apellido + ", Dni=" + dni +  ", Eventos=" + eventos ;
     }
     
    

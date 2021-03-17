@@ -37,6 +37,12 @@ public class Vprincipal extends javax.swing.JFrame {
         MIcancelar = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         MImodificar = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        MIinscripcion = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        MIlistado = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        MIsalir = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -81,6 +87,37 @@ public class Vprincipal extends javax.swing.JFrame {
 
         jMenuBar2.add(jMenu5);
 
+        jMenu1.setText("Inscripción");
+
+        MIinscripcion.setText("Inscripción");
+        MIinscripcion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MIinscripcionActionPerformed(evt);
+            }
+        });
+        jMenu1.add(MIinscripcion);
+
+        jMenuBar2.add(jMenu1);
+
+        jMenu2.setText("Listado");
+
+        MIlistado.setText("Listado");
+        MIlistado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MIlistadoActionPerformed(evt);
+            }
+        });
+        jMenu2.add(MIlistado);
+
+        jMenuBar2.add(jMenu2);
+
+        jMenu3.setText("Salir");
+
+        MIsalir.setText("Salir");
+        jMenu3.add(MIsalir);
+
+        jMenuBar2.add(jMenu3);
+
         setJMenuBar(jMenuBar2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -117,6 +154,14 @@ public class Vprincipal extends javax.swing.JFrame {
            System.out.println(e.getClass()+e.getMessage());
        }
     }//GEN-LAST:event_MImodificarActionPerformed
+
+    private void MIinscripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MIinscripcionActionPerformed
+        Controlador.VentanaInscribir();
+    }//GEN-LAST:event_MIinscripcionActionPerformed
+
+    private void MIlistadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MIlistadoActionPerformed
+        
+    }//GEN-LAST:event_MIlistadoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -156,8 +201,14 @@ public class Vprincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem MIalta;
     private javax.swing.JMenuItem MIcancelar;
+    private javax.swing.JMenuItem MIinscripcion;
+    private javax.swing.JMenuItem MIlistado;
     private javax.swing.JMenuItem MImodificar;
+    private javax.swing.JMenuItem MIsalir;
     private javax.swing.JMenu Malta;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar2;

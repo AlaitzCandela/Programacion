@@ -5,7 +5,9 @@
  */
 package Controlador;
 
+import Modelo.Empresa;
 import Modelo.Evento;
+import Modelo.Persona;
 import ModeloBD.*;
 import Vista.*;
 import java.time.LocalDate;
@@ -23,9 +25,12 @@ private static Vprincipal vp;
 private static Valta va;
 private static Vcancelar vc;
 private static Vmodificar vm;
+private static Vinscribir vi;
 
 private static BaseDatos bd;
 private static TablaEventos te;
+private static TablaPersona tp;
+private static TablaRelacion tr;
 
 private static Evento ev;
     
@@ -131,6 +136,35 @@ private static Evento ev;
         }
         return mod;
     }
+    public static void VentanaInscribir(){
+        vi=new Vinscribir(vp,true);
+        vi.setVisible(true);
+    }
+    public static boolean InsertarPEE(String nEmpresa,String nDireccion,String nNif,String n,String a,String d,String nEv){
+        Empresa em=new Empresa(nEmpresa,nNif,nDireccion);
+        Persona p=new Persona(n,a,d,em);
+        boolean in=false,re=false;
+        try{
+            tp=new TablaPersona(bd.getCon());
+            in=tp.Insertar(p,em);
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        Evento event=new Evento(nEv);
+        Evento evento=new Evento(nEv);
+        try{
+            evento=te.Consultar(event);
+           if(in==true){
+               re=tr.Insertar(p,evento);
+           }
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        return in;
+        
+    }
     public static void Volver(String n){
         if(n.equals("va")){
             va.dispose();
@@ -141,5 +175,8 @@ private static Evento ev;
             }
             else
                 vm.dispose();
+    }
+    public static void Salir(){
+        System.exit(0);
     }
 }
