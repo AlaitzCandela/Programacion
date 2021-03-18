@@ -30,6 +30,7 @@ public class Vprincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton1 = new javax.swing.JButton();
         jMenuBar2 = new javax.swing.JMenuBar();
         Malta = new javax.swing.JMenu();
         MIalta = new javax.swing.JMenuItem();
@@ -45,6 +46,9 @@ public class Vprincipal extends javax.swing.JFrame {
         MIsalir = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/evento-concierto-874x492.jpg"))); // NOI18N
+        jButton1.setText("jButton1");
 
         Malta.setText("Alta");
         Malta.addActionListener(new java.awt.event.ActionListener() {
@@ -114,6 +118,11 @@ public class Vprincipal extends javax.swing.JFrame {
         jMenu3.setText("Salir");
 
         MIsalir.setText("Salir");
+        MIsalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MIsalirActionPerformed(evt);
+            }
+        });
         jMenu3.add(MIsalir);
 
         jMenuBar2.add(jMenu3);
@@ -124,11 +133,11 @@ public class Vprincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 490, Short.MAX_VALUE)
+            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 858, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 326, Short.MAX_VALUE)
+            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         pack();
@@ -160,8 +169,12 @@ public class Vprincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_MIinscripcionActionPerformed
 
     private void MIlistadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MIlistadoActionPerformed
-        
+        Controlador.Listado();
     }//GEN-LAST:event_MIlistadoActionPerformed
+
+    private void MIsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MIsalirActionPerformed
+        Controlador.Salir();
+    }//GEN-LAST:event_MIsalirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -206,6 +219,7 @@ public class Vprincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem MImodificar;
     private javax.swing.JMenuItem MIsalir;
     private javax.swing.JMenu Malta;
+    private javax.swing.JButton jButton1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;

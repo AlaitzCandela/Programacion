@@ -1,7 +1,7 @@
 
 package ModeloBD;
 
-import Modelo.Evento;
+import Modelo.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.Time;
@@ -87,9 +87,21 @@ public class TablaEventos {
         ResultSet resultado=ps.executeQuery();
         ArrayList <Evento> eventos=new ArrayList();
         while(resultado.next()){
-            Evento ev=new Evento();
-            ev.setNombre(resultado.getString("Nombre"));
+            Evento ev=new Evento(resultado.getString("Nombre"));
             eventos.add(ev);
+            
+        }
+        return eventos;
+        
+    }
+     public ArrayList<String> ConsultarDatosNom() throws Exception{
+        String plantilla="SELECT * FROM eventos ;";
+        PreparedStatement ps=con.prepareStatement(plantilla);
+        ResultSet resultado=ps.executeQuery();
+        ArrayList <String> eventos=new ArrayList();
+        while(resultado.next()){
+           
+            eventos.add(resultado.getString("Nombre"));
             
         }
         return eventos;

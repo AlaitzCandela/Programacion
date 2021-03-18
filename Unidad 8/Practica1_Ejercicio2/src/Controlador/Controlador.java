@@ -26,6 +26,7 @@ private static Valta va;
 private static Vcancelar vc;
 private static Vmodificar vm;
 private static Vinscribir vi;
+private static Vlistado vl;
 
 private static BaseDatos bd;
 private static TablaEventos te;
@@ -100,6 +101,16 @@ private static Evento ev;
         }
         
     }
+    public static ArrayList ListaEvento(){
+        ArrayList<String>nombres= new ArrayList();
+        try{
+            nombres=te.ConsultarDatosNom();
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        return nombres;
+    }
     public static ArrayList Consultar(String n){
        Evento evento = new Evento(n);
        Evento event = new Evento(n);
@@ -140,30 +151,47 @@ private static Evento ev;
         vi=new Vinscribir(vp,true);
         vi.setVisible(true);
     }
-    public static boolean InsertarPEE(String nEmpresa,String nDireccion,String nNif,String n,String a,String d,String nEv){
-        Empresa em=new Empresa(nEmpresa,nNif,nDireccion);
-        Persona p=new Persona(n,a,d,em);
-        boolean in=false,re=false;
-        try{
-            tp=new TablaPersona(bd.getCon());
-            in=tp.Insertar(p,em);
-        }
-        catch(Exception e){
-            System.out.println(e.getMessage());
-        }
+    public static boolean InsertarPEE(String nEmpresa,String nDireccion,String nNif,String nom,String a,String d,String nEv) throws Exception{
+        boolean  in=false;
         Evento event=new Evento(nEv);
-        Evento evento=new Evento(nEv);
+        
+             Empresa em=new Empresa(nEmpresa,nNif,nDireccion);
+            Persona p=new Persona(nom,a,d,em);
+            boolean re=false;
+            try{
+                tp=new TablaPersona(bd.getCon());
+                in=tp.Insertar(p,em);
+            }
+            catch(Exception e){
+                System.out.println(e.getMessage());
+            }
+
+            Evento evento=new Evento();
+            try{
+                evento=te.Consultar(event);
+               if(in==true){
+                   re=tr.Insertar(p,evento);
+               }
+            }
+            catch(Exception e){
+                System.out.println(e.getMessage());
+            }
+        return in;
+    }
+    public static void Listado(){
+        vl=new Vlistado(vp,true);
+        vl.setVisible(true);
+    }
+    public static ArrayList GetPersonas(String nombre){
+        Evento n=new Evento(nombre);
+        ArrayList <String> Personas=new ArrayList();
         try{
-            evento=te.Consultar(event);
-           if(in==true){
-               re=tr.Insertar(p,evento);
-           }
+            Personas=tr.getP(n);
         }
         catch(Exception e){
             System.out.println(e.getMessage());
         }
-        return in;
-        
+        return Personas;
     }
     public static void Volver(String n){
         if(n.equals("va")){
@@ -174,7 +202,13 @@ private static Evento ev;
                 vc.dispose();
             }
             else
-                vm.dispose();
+                if(n.equals("vm"))
+                     vm.dispose();
+                else
+                    if(n.equals("vi"))
+                        vi.dispose();
+                    else
+                        vl.dispose();
     }
     public static void Salir(){
         System.exit(0);

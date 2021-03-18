@@ -8,6 +8,8 @@ package ModeloBD;
 import Modelo.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 
 
 public class TablaRelacion {
@@ -38,5 +40,16 @@ public class TablaRelacion {
             r=true;
         return r;
     }
+     public ArrayList getP(Evento e) throws Exception{
+        String plantilla="SELECT * FROM relacioneventopersona WHERE lower(Nombre)=?;";
+        PreparedStatement ps=con.prepareStatement(plantilla);
+        ps.setString(1,e.getNombre());
+        ResultSet resultado=ps.executeQuery();
+       ArrayList <String> personas=new ArrayList();
+        for(int x=0;resultado.next();x++){
+            personas.add(resultado.getString(x));
+        }
+        return personas;
+     }
     
 }

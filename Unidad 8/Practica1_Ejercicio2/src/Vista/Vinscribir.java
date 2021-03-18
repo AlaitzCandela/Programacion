@@ -483,7 +483,12 @@ private String nEv;
     private void BaceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BaceptarActionPerformed
      String n="vi";
         boolean i=false;
-        i=Controlador.InsertarPEE(nE,dirE,nif,nP,apellido,dni,nEv);
+        try{
+            i=Controlador.InsertarPEE(nE,dirE,nif,nP,apellido,dni,nEv);
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(this,e.getMessage());
+        }
         if(i==true)
             JOptionPane.showMessageDialog(this,"Persona inscrita correctamente");
             
