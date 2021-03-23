@@ -36,22 +36,10 @@ public class Vlistado extends javax.swing.JDialog {
        int x=0;
        for(x=0;x<listaEventos.size();x++){
            rb.get(x).setText(listaEventos.get(x));
+           if(rb.get(x).getText().isEmpty())
+               rb.get(x).setVisible(false);
        }
-       if(RB1.getText().isEmpty())
-             RB1.setVisible(false);
-      if(RB2.getText().isEmpty())
-          RB2.setVisible(false);
-      if    (RB3.getText().isEmpty())
-            RB3.setVisible(false);
-      if(RB4.getText().isEmpty())
-             RB4.setVisible(false);
-      if(RB5.getText().isEmpty())
-            RB5.setVisible(false);
-      if(RB6.getText().isEmpty())
-            RB6.setVisible(false);
-                   
-           
-            
+             
         
     }
     

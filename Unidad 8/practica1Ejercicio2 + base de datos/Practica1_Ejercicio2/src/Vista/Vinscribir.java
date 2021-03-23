@@ -290,7 +290,7 @@ private String nEv;
                 if(TFnombreP.getText().length()<2)
                     throw new DatoNoValido("El nombre tiene que tener más de dos carácteres");
                 else{
-                    Pattern patron =Pattern.compile("[A-Z][a-z]*");
+                    Pattern patron =Pattern.compile("^[A-Z][a-z]*$");
                     Matcher m=patron.matcher(TFnombreP.getText());
                     if(!m.matches())
                         throw new DatoNoValido ("El nombre tiene que ser todo letras");
@@ -320,7 +320,7 @@ private String nEv;
                 if(TFapellido.getText().length()<2)
                     throw new DatoNoValido("El apellido tiene que tener más de dos carácteres");
                 else{
-                    Pattern patron =Pattern.compile("[A-Z][a-z]*");
+                    Pattern patron =Pattern.compile("^[A-Z][a-z]*$");
                     Matcher m=patron.matcher(TFapellido.getText());
                     if(!m.matches())
                         throw new DatoNoValido ("El apellido tiene que ser todo letras");
@@ -348,7 +348,7 @@ private String nEv;
                 if(FTFdni.getText().length()!=9)
                     throw new DatoNoValido("El dni tiene que tener 9 caracteres");
                 else{
-                    Pattern patron =Pattern.compile("[0-9]{8}[A-Z]");
+                    Pattern patron =Pattern.compile("^[0-9]{8}[A-Z]$");
                     Matcher m=patron.matcher(FTFdni.getText());
                     if(!m.matches())
                         throw new DatoNoValido ("El dni tiene que tener 8 numeros y 9 letras");
@@ -376,7 +376,7 @@ private String nEv;
                 if(TFnombreE.getText().length()<2)
                     throw new DatoNoValido("El nombre de la empresa tiene que tener más de dos carácteres");
                 else{
-                    Pattern patron =Pattern.compile("[A-Z][a-z]*");
+                    Pattern patron =Pattern.compile("^[A-Z][a-z]*$");
                     Matcher m=patron.matcher(TFnombreE.getText());
                     if(!m.matches())
                         throw new DatoNoValido ("El nombre de la empresa tiene que ser todo letras");
@@ -404,7 +404,7 @@ private String nEv;
                 if(TFdireccion.getText().length()<2)
                     throw new DatoNoValido("La direccion de la empresa tiene que tener más de dos carácteres");
                 else{
-                    Pattern patron =Pattern.compile("[A-Z][a-z]*");
+                    Pattern patron =Pattern.compile("^[A-Z][a-z]*$");
                     Matcher m=patron.matcher(TFdireccion.getText());
                     if(!m.matches())
                         throw new DatoNoValido ("la direccion  de la empresa tiene que ser todo letras");
@@ -432,7 +432,7 @@ private String nEv;
                 if(TFnif.getText().length()!=9)
                     throw new DatoNoValido("El nif de la empresa tiene que tener 9 caracteres");
                 else{
-                    Pattern patron =Pattern.compile("[A-Z]+[0-9]{8}");
+                    Pattern patron =Pattern.compile("^[A-Z]+[0-9]{8}$");
                     Matcher m=patron.matcher(TFnif.getText());
                     if(!m.matches())
                         throw new DatoNoValido ("El nif de la empresa tiene que tener una letra y 8 numeros");
@@ -460,7 +460,7 @@ private String nEv;
                 if(TFnombreEvento.getText().length()<2)
                     throw new DatoNoValido("El nombre del evento tiene que tener más de dos carácteres");
                 else{
-                    Pattern patron =Pattern.compile("[A-Z][a-z]*");
+                    Pattern patron =Pattern.compile("^[A-Z][a-z]*$");
                     Matcher m=patron.matcher(TFnombreEvento.getText());
                     if(!m.matches())
                         throw new DatoNoValido ("El nombre del evento tiene que ser todo letras");

@@ -22,10 +22,6 @@ public class TablaPersona {
     
     public boolean Insertar(Persona p,Empresa e)throws Exception{
         boolean ip=false;
-        
-        boolean ie=false;
-        ie=InsertarEmpresa(e);
-        if(ie==true){
              String plantillaPersona="INSERT INTO persona VALUES(?,?,?,?);";
              PreparedStatement ps=con.prepareStatement(plantillaPersona);
              ps.setString(1,p.getNombre());
@@ -40,27 +36,10 @@ public class TablaPersona {
                  throw new Exception("Persona no insertada");
              else
                  ip=true;
-        }
+        
        return ip;
         
     }
-    public boolean InsertarEmpresa(Empresa e) throws Exception{
-        BaseDatos bd=new BaseDatos();
-        TablaEmpresa te=new TablaEmpresa(bd.getCon());
-       
-        String plantillaEmpresa="INSERT INTO empresa VALUES(?,?,?);";
-        PreparedStatement ps= con.prepareStatement(plantillaEmpresa);
-        ps.setString(1,e.getNombreEmpresa());
-        ps.setString(2,e.getDireccion());
-        ps.setString(3,e.getNif());
-        
-        boolean ie=false;
-        int n=ps.executeUpdate();
-        ps.close();
-        if(n!=1)
-            throw new Exception("Fila no insertada");
-        else ie=true;
-        return ie;
-    }
+    
     
 }

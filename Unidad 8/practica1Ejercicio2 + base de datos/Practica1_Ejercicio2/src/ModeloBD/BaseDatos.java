@@ -12,6 +12,7 @@ public class BaseDatos {
 
     public BaseDatos() {
     }
+    
     //get
 
     public Connection getCon() {

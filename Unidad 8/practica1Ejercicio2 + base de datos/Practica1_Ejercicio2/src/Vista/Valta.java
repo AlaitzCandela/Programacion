@@ -212,7 +212,7 @@ private int aforo;
             if(TFnombre.getText().length()<2)
                 throw new DatoNoValido("El nombre tiene que tener más de dos cáracteres");
             else{
-                Pattern patron=Pattern.compile("[A-Z][a-z]*");
+                Pattern patron=Pattern.compile("^[A-Z][a-z]*$");
                 Matcher m=patron.matcher(TFnombre.getText());
                 if(!m.matches())
                     throw new DatoNoValido("El nombre tiene que ser todo letras");
@@ -241,7 +241,7 @@ private int aforo;
                 if(TFlugar.getText().length()<3)
                     throw new DatoNoValido("Tiene que ser mas de tres cáracteres");
                 else{
-                    Pattern patron=Pattern.compile("[A-Z][a-z]*");
+                    Pattern patron=Pattern.compile("^[A-Z][a-z]*$");
                     Matcher m=patron.matcher(TFlugar.getText());
                     if(!m.matches())
                         throw new DatoNoValido("Tiene que ser todo letras");
@@ -276,7 +276,7 @@ private int aforo;
            if(TFaforo.getText().length()<2)
                throw new DatoNoValido("El aforo tiene que ser mas de 10");
            else{
-               Pattern patron=Pattern.compile("[0-9]{2,}");
+               Pattern patron=Pattern.compile("[0-9]{2,}$");
                Matcher m=patron.matcher((TFaforo.getText()));
                if(!m.matches())
                    throw new DatoNoValido("El aforo tiene que ser numeros");

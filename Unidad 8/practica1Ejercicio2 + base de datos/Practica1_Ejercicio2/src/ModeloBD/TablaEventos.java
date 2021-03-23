@@ -86,7 +86,7 @@ public class TablaEventos {
         PreparedStatement ps=con.prepareStatement(plantilla);
         ResultSet resultado=ps.executeQuery();
         ArrayList <Evento> eventos=new ArrayList();
-        while(resultado.next()){
+        if(resultado.next()){
             Evento ev=new Evento(resultado.getString("Nombre"));
             eventos.add(ev);
             

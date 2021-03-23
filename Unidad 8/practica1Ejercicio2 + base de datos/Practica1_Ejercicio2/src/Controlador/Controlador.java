@@ -32,6 +32,7 @@ private static BaseDatos bd;
 private static TablaEventos te;
 private static TablaPersona tp;
 private static TablaRelacion tr;
+private static TablaEmpresa tem;
 
 private static Evento ev;
     
@@ -39,7 +40,9 @@ private static Evento ev;
         try{
             bd=new BaseDatos();
             bd.ConectarCon();
+            tem=new TablaEmpresa(bd.getCon());
             te=new TablaEventos(bd.getCon());
+            tp=new TablaPersona(bd.getCon());
             vp=new Vprincipal();
             vp.setVisible(true);
         }
@@ -154,13 +157,19 @@ private static Evento ev;
     public static boolean InsertarPEE(String nEmpresa,String nDireccion,String nNif,String nom,String a,String d,String nEv) throws Exception{
         boolean  in=false;
         Evento event=new Evento(nEv);
-        
-             Empresa em=new Empresa(nEmpresa,nNif,nDireccion);
-            Persona p=new Persona(nom,a,d,em);
-            boolean re=false;
+        Empresa em=new Empresa(nEmpresa,nNif,nDireccion);
+        Persona p=new Persona(nom,a,d,em);
+        boolean re=false;
+        boolean ie=false;
             try{
-                tp=new TablaPersona(bd.getCon());
-                in=tp.Insertar(p,em);
+               
+                ie=tem.InsertarEmpresa(em);
+                if(ie == true){
+                    in=tp.Insertar(p,em);
+                }
+                else
+                    System.out.println("Elemento empresa no insertada en la tabla empresa");
+                
             }
             catch(Exception e){
                 System.out.println(e.getMessage());
