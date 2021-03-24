@@ -12,6 +12,12 @@ public class Abogado {
     private ArrayList <CasoJuicio> casoJuicio;
     
     //Constructor
+    public Abogado(String dni, String nombre, String apellido, String direccion) {
+        this.dni = dni;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.direccion = direccion;
+    }
 
     public Abogado(String dni, String nombre, String apellido, String direccion, ArrayList<CasoJuicio> casoJuicio) {
         this.dni = dni;
@@ -21,8 +27,10 @@ public class Abogado {
         this.casoJuicio = casoJuicio;
     }
 
-    public Abogado() {
+    public Abogado(String dni) {
+        this.dni = dni;
     }
+    
     
     //get-set
 
@@ -62,8 +70,21 @@ public class Abogado {
         return casoJuicio;
     }
 
-    public void setCasoJuicio(ArrayList<CasoJuicio> casoJuicio) {
-        this.casoJuicio = casoJuicio;
+    public void setCasoJuicio(CasoJuicio c) {
+        if(casoJuicio ==null){
+            casoJuicio=new ArrayList();
+        }
+        casoJuicio.add(c);
+        
     }
-    
+     public void EliminarCaso(CasoJuicio c){
+        casoJuicio.remove(c);
+    }
+     //toString
+
+    @Override
+    public String toString() {
+        return  "dni:" + dni + ",nombre:" + nombre + "apellido:" + apellido + "direccion:" + direccion + "casoJuicio:" + casoJuicio ;
+    }
+     
 }

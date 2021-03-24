@@ -9,19 +9,22 @@ public class CasoJuicio {
     private int numExp;
     private LocalDate fechaInicio;
     private LocalDate fechaFin;
-    private String estado;
+    private EstadoCaso estado;
     private ArrayList <Abogado> abogados;
     private Cliente c;
     
     //Constructor
 
-    public CasoJuicio(int numExp, LocalDate fechaInicio, LocalDate fechaFin, String estado, ArrayList<Abogado> abogados, Cliente c) {
+    public CasoJuicio(int numExp, LocalDate fechaInicio, LocalDate fechaFin, EstadoCaso estado, ArrayList<Abogado> abogados, Cliente c) {
         this.numExp = numExp;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
         this.estado = estado;
         this.abogados = abogados;
         this.c = c;
+    }
+
+    public CasoJuicio() {
     }
     
     //get-set
@@ -50,11 +53,11 @@ public class CasoJuicio {
         this.fechaFin = fechaFin;
     }
 
-    public String getEstado() {
+    public EstadoCaso getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(EstadoCaso estado) {
         this.estado = estado;
     }
 
@@ -62,8 +65,12 @@ public class CasoJuicio {
         return abogados;
     }
 
-    public void setAbogados(ArrayList<Abogado> abogados) {
-        this.abogados = abogados;
+    public void setAbogados(Abogado a) {
+        if(abogados==null){
+            abogados=new ArrayList();
+        }
+        abogados.add(a);
+        
     }
 
     public Cliente getC() {
@@ -73,6 +80,15 @@ public class CasoJuicio {
     public void setC(Cliente c) {
         this.c = c;
     }
+    public void EliminarAbogado(Abogado a){
+        abogados.remove(a);
     
+    }
+    //toString
+
+    @Override
+    public String toString() {
+        return  "numExp:" + numExp + ", fechaInicio:" + fechaInicio + ", fechaFin:" + fechaFin + ", estado:" + estado + ", abogados:" + abogados + ", caso:" + c ;
+    }
     
 }

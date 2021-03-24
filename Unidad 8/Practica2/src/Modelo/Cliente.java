@@ -15,6 +15,16 @@ public class Cliente {
             
     //Constructor
 
+    public Cliente(String dni, String nombre, String apellido, String direccion, int telefono, String correo) {
+        this.dni = dni;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.direccion = direccion;
+        this.telefono = telefono;
+        this.correo = correo;
+    }
+
+    
     public Cliente(String dni, String nombre, String apellido, String direccion, int telefono, String correo, ArrayList<CasoJuicio> listaCasos) {
         this.dni = dni;
         this.nombre = nombre;
@@ -24,6 +34,11 @@ public class Cliente {
         this.correo = correo;
         this.listaCasos = listaCasos;
     }
+
+    public Cliente(String dni) {
+        this.dni = dni;
+    }
+    
     
     //get-set
 
@@ -79,8 +94,21 @@ public class Cliente {
         return listaCasos;
     }
 
-    public void setListaCasos(ArrayList<CasoJuicio> listaCasos) {
-        this.listaCasos = listaCasos;
+    public void setListaCasos(CasoJuicio c) {
+        if(listaCasos ==null){
+            listaCasos=new ArrayList();
+        }
+        listaCasos.add(c);
+        
+    }
+    public void EliminarCaso(CasoJuicio c){
+        listaCasos.remove(c);
+    }
+    //toString
+
+    @Override
+    public String toString() {
+        return  "dni:" + dni + ", nombre:" + nombre + ", apellido:" + apellido + ", direccion:" + direccion + ", telefono:" + telefono + ", correo:" + correo + ", listaCasos:" + listaCasos ;
     }
     
 }

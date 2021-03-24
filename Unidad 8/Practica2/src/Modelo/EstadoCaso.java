@@ -3,15 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ModeloBD;
-
-import java.sql.Connection;
+package Modelo;
 
 /**
  *
  * @author 1GDAW07
  */
-public class TablaCliente {
-    Connection con;
-    
-}
+public enum EstadoCaso {TRAMITADO,ARCHIVADO,ANULADO}
