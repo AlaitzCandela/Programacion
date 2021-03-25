@@ -24,7 +24,7 @@ public class BaseDatos {
     public void ConectarCon(){
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            String bd="practica2";
+            String bd="practica_2";
             String url="jdbc:mysql://localhost:3306/"+bd;
             String login="root";
             String passwd="usbw";

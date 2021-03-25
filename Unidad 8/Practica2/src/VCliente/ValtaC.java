@@ -6,6 +6,7 @@
 package VCliente;
 
 import Controlador.*;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -387,7 +388,14 @@ private String correo;
     }//GEN-LAST:event_TFtelefonoActionPerformed
 
     private void BaceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BaceptarActionPerformed
-        Controlador.AltaCliente(dni,nombre,apellido,dir,telefono,correo);
+       boolean i=false;
+        i=Controlador.AltaCliente(dni,nombre,apellido,dir,telefono,correo);
+        if(i==true)
+            JOptionPane.showMessageDialog(this,"Persona dada de alta correctamente");
+            
+        else
+            JOptionPane.showMessageDialog(this,"Persona no dada de alta correctamente");
+        Controlador.Volver(this); 
     }//GEN-LAST:event_BaceptarActionPerformed
 
     /**
