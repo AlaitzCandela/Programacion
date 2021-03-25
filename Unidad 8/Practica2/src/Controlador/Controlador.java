@@ -25,11 +25,15 @@ public class Controlador {
     private static VistaPrincipal vp;
     private static ValtaC vac;
     private static VbajaC vbc;
+    private static VmodificacionC vmc;
 
     public static void main(String[] args) {
        try{
            bd=new BaseDatos();
             bd.ConectarCon();
+            tc=new TablaCliente(bd.getCon());
+            tcj=new TablaCasoJuicio(bd.getCon());
+            ta=new TablaAbogado(bd.getCon());
             vp=new VistaPrincipal();
             vp.setVisible(true);
        }
@@ -48,8 +52,6 @@ public class Controlador {
         
     }
     public static boolean AltaCliente(String dni,String nom,String ap,String dir,int telef,String correo ){
-        tc=new TablaCliente(bd.getCon());
-        tcj=new TablaCasoJuicio(bd.getCon());
         c=new Cliente(dni,nom,ap,dir,telef,correo);
         boolean i=false;
         int num=0;
@@ -93,8 +95,23 @@ public class Controlador {
         vbc=new VbajaC(vp,true);
         vbc.setVisible(true);
     }
-    public static void BajaCliente(String dni){
+    public static boolean BajaCliente(String dni){
+        boolean d=false;
         c= new Cliente(dni);
+        try{
+            d=tc.BorrarCliente(c);
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        return d;
+    }
+    public static void VentanaModificacionCliente(){
+        vmc=new VmodificacionC(vp,true);
+        vmc.setVisible(true);
+    }
+    public static void Consulta(String nombre){
+      //  String listaOpciones[]={"Dni","Nombre","Apellido","Direccion","Telefono","Correo"};
         
     }
     public static void Volver(JDialog jd){

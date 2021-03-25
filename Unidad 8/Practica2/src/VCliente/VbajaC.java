@@ -103,11 +103,17 @@ private String dni;
     }//GEN-LAST:event_FTFdniCActionPerformed
 
     private void BaceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BaceptarActionPerformed
-       int c=JOptionPane.showConfirmDialog(this,"¿Estas seguro que quieres borrar el cliente "+dni+"?");
+        boolean d=false;
+        int c=JOptionPane.showConfirmDialog(this,"¿Estas seguro que quieres borrar el cliente "+dni+"?");
        if(c==0)
-           Controlador.BajaCliente(dni);
+           d=Controlador.BajaCliente(dni);
        else
            JOptionPane.showMessageDialog(this, "Cancelado");
+       if(d==true)
+           JOptionPane.showMessageDialog(this,"El cliente ha sido borrado");
+       else
+           JOptionPane.showMessageDialog(this,"El cliente no ha sido borrado");
+       Controlador.Volver(this);
     }//GEN-LAST:event_BaceptarActionPerformed
 
     /**

@@ -34,6 +34,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         MIaltaC = new javax.swing.JMenuItem();
         MIbajaC = new javax.swing.JMenuItem();
+        MImodificarC = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
@@ -57,6 +58,9 @@ public class VistaPrincipal extends javax.swing.JFrame {
             }
         });
         jMenu1.add(MIbajaC);
+
+        MImodificarC.setText("Modificar");
+        jMenu1.add(MImodificarC);
 
         jMenuBar1.add(jMenu1);
 
@@ -131,6 +135,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem MIaltaC;
     private javax.swing.JMenuItem MIbajaC;
+    private javax.swing.JMenuItem MImodificarC;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;

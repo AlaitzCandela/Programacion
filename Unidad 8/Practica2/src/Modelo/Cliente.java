@@ -38,6 +38,9 @@ public class Cliente {
     public Cliente(String dni) {
         this.dni = dni;
     }
+
+    public Cliente() {
+    }
     
     
     //get-set
