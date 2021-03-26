@@ -64,25 +64,11 @@ public class TablaCliente {
         
         return d;
     }
-    public void Consulta(String nombre) throws Exception{
+    public void ElegirConsulta(String nombre) throws Exception{
     String plantilla="";   
-     if(nombre.equals("Dni"))
+     
          plantilla="SELECT * FROM cliente WHERE lower(dni)=?;";
-     else
-          if(nombre.equals("Nombre"))
-                 plantilla="SELECT * FROM cliente WHERE lower(Nombre)=?;";
-             else
-                 if(nombre.equals("Apellido"))
-                     plantilla="SELECT * FROM cliente WHERE lower(Apellido)=?;";
-                 else
-                     if(nombre.equals("Direccion"))
-                         plantilla="SELECT * FROM cliente WHERE lower(Direccion)=?;";
-                     else
-                         if(nombre.equals("Telefono"))
-                             plantilla="SELECT * FROM cliente WHERE lower(Telefono)=?;";
-                         else
-                             if(nombre.equals("Correo"))
-                                 plantilla="SELECT * FROM cliente WHERE lower(Correo)=?;";
+     
      
      PreparedStatement ps=con.prepareStatement(plantilla);
    
@@ -108,5 +94,45 @@ public class TablaCliente {
                listaC.add(c);
         }
         return listaC;
+    }
+    public String [] Consulta(Cliente c) throws Exception{
+        String plantilla="SELECT * FROM cliente WHERE lower(dni)=?;";
+        PreparedStatement ps=con.prepareStatement(plantilla);
+        ps.setString(1, c.getDni());
+        
+        
+        String [] lista=new String[6];
+        ResultSet resultado=ps.executeQuery();
+        if(resultado.next()){
+            lista[0]=resultado.getString("Dni");
+            lista[1]=resultado.getString("Nombre");
+            lista[2]=resultado.getString("Apellido");
+            lista[3]=resultado.getString("Direccion");
+            lista[4]=resultado.getString("Telefono");
+            lista[5]=resultado.getString("Correo");
+            
+        } 
+        return lista;
+    }
+    public boolean ModificarDatos(String [] l) throws Exception{
+        String plantilla="UPDATE cliente SET Dni=?,Nombre=?,Apellido=?,Direccion=?,Telefono=?,Correo=? WHERE lower(dni)=?;";
+        PreparedStatement ps=con.prepareStatement(plantilla);
+        ps.setString(1, l[0]);
+        ps.setString(2, l[1]);
+        ps.setString(3, l[2]);
+        ps.setString(4, l[3]);
+        ps.setString(5, l[4]);
+        ps.setString(6, l[5]);
+        ps.setString(7, l[0]);
+        
+        boolean m=false;
+        int n=ps.executeUpdate();
+        if(n!=1)
+            throw new Exception("La fila no ha sido modificada");
+        else
+            m=true;
+        return m;
+                    
+        
     }
 }

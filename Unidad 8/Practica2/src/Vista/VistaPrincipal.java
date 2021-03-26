@@ -6,6 +6,7 @@
 package Vista;
 
 import Controlador.Controlador;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -60,6 +61,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jMenu1.add(MIbajaC);
 
         MImodificarC.setText("Modificar");
+        MImodificarC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MImodificarCActionPerformed(evt);
+            }
+        });
         jMenu1.add(MImodificarC);
 
         jMenuBar1.add(jMenu1);
@@ -96,6 +102,17 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private void MIbajaCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MIbajaCActionPerformed
         Controlador.VentanaBajaCliente();
     }//GEN-LAST:event_MIbajaCActionPerformed
+
+    private void MImodificarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MImodificarCActionPerformed
+        String dni=JOptionPane.showInputDialog(this,"Introduce el dni del cliente, si no se acuerda que clientes tiene, introduce 'obtener datos'");
+        String c="";
+        if(dni.equals("obtener datos")){
+            c=Controlador.Consulta();
+            JOptionPane.showMessageDialog(this,c+"\n");
+        }
+        else
+            Controlador.VentanaModificacionCliente(dni);
+    }//GEN-LAST:event_MImodificarCActionPerformed
 
     /**
      * @param args the command line arguments

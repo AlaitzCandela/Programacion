@@ -106,14 +106,45 @@ public class Controlador {
         }
         return d;
     }
-    public static void VentanaModificacionCliente(){
-        vmc=new VmodificacionC(vp,true);
+    public static void VentanaModificacionCliente(String dni){
+        c=new Cliente(dni);
+        String[]l=new String[6];
+        try{
+            l=tc.Consulta(c);
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        vmc=new VmodificacionC(vp,true,l);
         vmc.setVisible(true);
     }
-    public static void Consulta(String nombre){
-      //  String listaOpciones[]={"Dni","Nombre","Apellido","Direccion","Telefono","Correo"};
-        
+    public static String Consulta(){
+     ArrayList <Cliente> lista=new ArrayList();
+     try{
+        lista=tc.ConsultaGeneral();
+     }
+     catch(Exception e){
+         System.out.println(e.getMessage());
+     }
+      String listaC="";
+      int x=0;
+      for(x=0;x<lista.size();x++){
+          listaC+=lista.get(x).toString();
+      }
+        return listaC;
     }
+    public static boolean ModificarDatos(String [] l){
+        boolean m=false;
+        try{
+            m=tc.ModificarDatos(l);
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        return m;
+    }
+    public static void ConsultaClienteS(String nombreB,String dato){}
+    public static void ConsultaClienteI(String nombreB,int dato){}
     public static void Volver(JDialog jd){
         jd.dispose();
     }

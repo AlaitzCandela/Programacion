@@ -6,6 +6,7 @@
 package Vista;
 
 import Controlador.Controlador;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -43,7 +44,7 @@ public class Vopciones extends javax.swing.JDialog {
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel1.setText("Elige la opcion por la que quieres hacer la consulta");
 
-        Bdni.setText("DNI");
+        Bdni.setText("Dni");
         Bdni.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BdniActionPerformed(evt);
@@ -107,7 +108,7 @@ public class Vopciones extends javax.swing.JDialog {
                         .addComponent(Bdireccion)
                         .addGap(70, 70, 70)
                         .addComponent(Btelefono)))
-                .addContainerGap(93, Short.MAX_VALUE))
+                .addContainerGap(97, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,27 +131,33 @@ public class Vopciones extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BdniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BdniActionPerformed
-       Controlador.Consulta(Bdni.getName());
+      String dato=JOptionPane.showInputDialog(this,"Introduce el dni");
+        Controlador.ConsultaClienteS(Bdni.getText(),dato);
     }//GEN-LAST:event_BdniActionPerformed
 
     private void BnombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BnombreActionPerformed
-        Controlador.Consulta(Bnombre.getName());
+        String dato=JOptionPane.showInputDialog(this,"Introduce el nombre");
+        Controlador.ConsultaClienteS(Bnombre.getText(),dato);
     }//GEN-LAST:event_BnombreActionPerformed
 
     private void BapellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BapellidoActionPerformed
-        Controlador.Consulta(Bapellido.getName());
+        String dato=JOptionPane.showInputDialog(this,"Introduce el apellido");
+        Controlador.ConsultaClienteS(Bapellido.getText(),dato);
     }//GEN-LAST:event_BapellidoActionPerformed
 
     private void BdireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BdireccionActionPerformed
-       Controlador.Consulta(Bdireccion.getName());
+      String dato=JOptionPane.showInputDialog(this,"Introduce el dni");
+        Controlador.ConsultaClienteS(Bdireccion.getText(),dato);
     }//GEN-LAST:event_BdireccionActionPerformed
 
     private void BtelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtelefonoActionPerformed
-        Controlador.Consulta(Btelefono.getName());
+      int dato=Integer.parseInt(JOptionPane.showInputDialog(this,"Introduce el dni"));
+        Controlador.ConsultaClienteI(Btelefono.getText(),dato);
     }//GEN-LAST:event_BtelefonoActionPerformed
 
     private void BcorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BcorreoActionPerformed
-        Controlador.Consulta(Bcorreo.getName());
+        String dato=JOptionPane.showInputDialog(this,"Introduce el dni");
+        Controlador.ConsultaClienteS(Bcorreo.getText(),dato);
     }//GEN-LAST:event_BcorreoActionPerformed
 
     /**

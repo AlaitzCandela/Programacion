@@ -5,7 +5,7 @@
  */
 package Vista;
 
-
+import Modelo.Persona;
 import java.util.ArrayList;
 import practica1_ejercicio1.Controlador;
 
@@ -14,15 +14,18 @@ import practica1_ejercicio1.Controlador;
  * @author 1GDAW07
  */
 public class Vconsulta extends javax.swing.JDialog {
-private static String datos;
+private static Persona p;
     /**
      * Creates new form Vconsulta
      */
-    public Vconsulta(java.awt.Frame parent, boolean modal,String datos) {
+    public Vconsulta(java.awt.Frame parent, boolean modal,Persona p) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
-        TAconsulta.setText(datos);
+        TAconsulta.setText("Nombre: "+p.getNombre()+"\n"
+                + "Edad: "+p.getEdad()+"\n"
+                + "Profesion: "+p.getProfesion()+"\n"
+                + "Telefono: "+p.getTelefono()+"\n");
     }
    
 
@@ -125,7 +128,7 @@ private static String datos;
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Vconsulta dialog = new Vconsulta(new javax.swing.JFrame(), true, datos);
+                Vconsulta dialog = new Vconsulta(new javax.swing.JFrame(), true, p);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

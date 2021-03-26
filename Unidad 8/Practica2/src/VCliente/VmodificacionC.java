@@ -6,20 +6,30 @@
 package VCliente;
 
 import Controlador.Controlador;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Alaitzutzu
  */
 public class VmodificacionC extends javax.swing.JDialog {
-
+private static String [] listaF=new String[6];
     /**
      * Creates new form VmodificacionC
      */
-    public VmodificacionC(java.awt.Frame parent, boolean modal) {
+    public VmodificacionC(java.awt.Frame parent, boolean modal,String [] lista) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
+        TFdni.setText(lista[0]);
+        TFnombre.setText(lista[1]);
+        TFapellido.setText(lista[2]);
+        TFdir.setText(lista[3]);
+        TFtel.setText(lista[4]);
+        TFcorreo.setText(lista[5]);
+        Baceptar.setVisible(false);
+        listaF[0]=lista[0];
+        
         
     }
 
@@ -46,7 +56,7 @@ public class VmodificacionC extends javax.swing.JDialog {
         TFdir = new javax.swing.JTextField();
         TFtel = new javax.swing.JTextField();
         TFcorreo = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        Baceptar = new javax.swing.JButton();
 
         jLabel7.setText("jLabel7");
 
@@ -68,8 +78,48 @@ public class VmodificacionC extends javax.swing.JDialog {
         jLabel8.setText("Correo");
 
         TFdni.setEditable(false);
+        TFdni.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TFdniActionPerformed(evt);
+            }
+        });
 
-        jButton1.setText("Aceptrar");
+        TFnombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TFnombreActionPerformed(evt);
+            }
+        });
+
+        TFapellido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TFapellidoActionPerformed(evt);
+            }
+        });
+
+        TFdir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TFdirActionPerformed(evt);
+            }
+        });
+
+        TFtel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TFtelActionPerformed(evt);
+            }
+        });
+
+        TFcorreo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TFcorreoActionPerformed(evt);
+            }
+        });
+
+        Baceptar.setText("Aceptrar");
+        Baceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BaceptarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -101,8 +151,8 @@ public class VmodificacionC extends javax.swing.JDialog {
                             .addComponent(TFcorreo, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(173, 173, 173)
-                        .addComponent(jButton1)))
-                .addContainerGap(158, Short.MAX_VALUE))
+                        .addComponent(Baceptar)))
+                .addContainerGap(157, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -134,12 +184,51 @@ public class VmodificacionC extends javax.swing.JDialog {
                     .addComponent(jLabel8)
                     .addComponent(TFcorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
-                .addComponent(jButton1)
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addComponent(Baceptar)
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void TFdniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TFdniActionPerformed
+        
+    }//GEN-LAST:event_TFdniActionPerformed
+
+    private void TFnombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TFnombreActionPerformed
+        listaF[1]=TFnombre.getText();
+        TFapellido.requestFocus();
+    }//GEN-LAST:event_TFnombreActionPerformed
+
+    private void TFapellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TFapellidoActionPerformed
+       listaF[2]=TFapellido.getText();
+       TFdir.requestFocus();
+    }//GEN-LAST:event_TFapellidoActionPerformed
+
+    private void TFdirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TFdirActionPerformed
+        listaF[3]=TFdir.getText();
+        TFtel.requestFocus();
+    }//GEN-LAST:event_TFdirActionPerformed
+
+    private void TFtelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TFtelActionPerformed
+        listaF[4]=TFtel.getText();
+        TFcorreo.requestFocus();
+    }//GEN-LAST:event_TFtelActionPerformed
+
+    private void TFcorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TFcorreoActionPerformed
+        listaF[5]=TFcorreo.getText();
+        Baceptar.setVisible(true);
+    }//GEN-LAST:event_TFcorreoActionPerformed
+
+    private void BaceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BaceptarActionPerformed
+       boolean m=false;
+        m=Controlador.ModificarDatos(listaF);
+        if(m==true)
+            JOptionPane.showMessageDialog(this,"Persona Modificada");
+        else
+            JOptionPane.showMessageDialog(this,"Persona No Modificada ");
+        Controlador.Volver(this);
+    }//GEN-LAST:event_BaceptarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -171,7 +260,7 @@ public class VmodificacionC extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                VmodificacionC dialog = new VmodificacionC(new javax.swing.JFrame(), true);
+                VmodificacionC dialog = new VmodificacionC(new javax.swing.JFrame(), true,listaF);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -184,13 +273,13 @@ public class VmodificacionC extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Baceptar;
     private javax.swing.JTextField TFapellido;
     private javax.swing.JTextField TFcorreo;
     private javax.swing.JTextField TFdir;
     private javax.swing.JTextField TFdni;
     private javax.swing.JTextField TFnombre;
     private javax.swing.JTextField TFtel;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
