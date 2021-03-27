@@ -26,7 +26,11 @@ public class Controlador {
     private static ValtaC vac;
     private static VbajaC vbc;
     private static VmodificacionC vmc;
-
+    private static Vopciones vo;
+    private static VconsultaC vcc;
+    
+    
+    
     public static void main(String[] args) {
        try{
            bd=new BaseDatos();
@@ -46,7 +50,15 @@ public class Controlador {
         vac.setVisible(true);
     }
     public static void LlenarArrayListAbogado(String d,String n,String ap,String di){
+       boolean iAbogado=false;
         a=new Abogado(d,n,ap,di);
+        try{
+                iAbogado=ta.Insertar(a);
+        }
+        catch(Exception e){
+               System.out.println(e.getMessage());
+         }
+         System.out.println(iAbogado);
         cj=new CasoJuicio();
         cj.setAbogados(a);
         
@@ -107,15 +119,24 @@ public class Controlador {
         return d;
     }
     public static void VentanaModificacionCliente(String dni){
-        c=new Cliente(dni);
-        String[]l=new String[6];
+        String nombre="Dni";
+        String [] datos=new String[6];
+        Cliente[]l=new Cliente[1];
         try{
-            l=tc.Consulta(c);
+            l=tc.Consulta(nombre,dni);
         }
         catch(Exception e){
             System.out.println(e.getMessage());
         }
-        vmc=new VmodificacionC(vp,true,l);
+        
+       datos[0]=l[0].getDni();
+       datos[1]=l[0].getNombre();
+       datos[2]=l[0].getApellido();
+       datos[3]=l[0].getDireccion();
+       datos[4]=Integer.toString(l[0].getTelefono());
+       datos[5]=l[0].getCorreo();
+       
+        vmc=new VmodificacionC(vp,true,datos);
         vmc.setVisible(true);
     }
     public static String Consulta(){
@@ -143,10 +164,43 @@ public class Controlador {
         }
         return m;
     }
-    public static void ConsultaClienteS(String nombreB,String dato){}
-    public static void ConsultaClienteI(String nombreB,int dato){}
+    public static void VentanaOpciones(){
+        vo=new Vopciones(vp,true);
+        vo.setVisible(true);
+    }
+    public static void ConsultaClienteS(String nombreB,String dato){
+        Cliente [] opc=new Cliente[1];
+        
+        try{
+            opc=tc.Consulta(nombreB,dato);
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        String d=opc[0].toString();
+        VentanaConsulta(d);
+    }
+    public static void ConsultaClienteI(String nombreB,int dato){
+           Cliente [] opc=new Cliente[1];
+        
+        try{
+            opc=tc.ConsultaI(nombreB,dato);
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        String d=opc[0].toString();
+        VentanaConsulta(d);
+    }
+    public static void VentanaConsulta(String d){
+        vcc=new VconsultaC(vp,true,d);
+        vcc.setVisible(true);
+    }
     public static void Volver(JDialog jd){
         jd.dispose();
+    }
+    public static void Salir(){
+        System.exit(0);
     }
 }
 

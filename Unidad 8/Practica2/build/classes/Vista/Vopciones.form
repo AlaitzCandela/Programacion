@@ -23,28 +23,28 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
-              <Component id="Bdni" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
-              <Component id="Bnombre" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
+          <Group type="102" attributes="0">
+              <EmptySpace min="55" pref="55" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="Bcorreo" min="-2" max="-2" attributes="0"/>
-                  <Group type="102" attributes="0">
+                  <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="Bdni" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+                      <Component id="Bnombre" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
                       <Component id="Bapellido" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="84" max="-2" attributes="0"/>
                       <Component id="Bdireccion" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
-                      <Component id="Btelefono" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="97" max="32767" attributes="0"/>
+              <EmptySpace pref="31" max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
+              <Component id="Bcorreo" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="Btelefono" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="159" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -52,18 +52,20 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+              <Component id="jLabel1" min="-2" pref="56" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="Bdni" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="Bnombre" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="Bapellido" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="Bdireccion" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="Btelefono" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
-              <Component id="Bcorreo" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="64" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="117" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="Btelefono" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="Bcorreo" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="153" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

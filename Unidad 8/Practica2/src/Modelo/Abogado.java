@@ -30,6 +30,9 @@ public class Abogado {
     public Abogado(String dni) {
         this.dni = dni;
     }
+
+    public Abogado() {
+    }
     
     
     //get-set

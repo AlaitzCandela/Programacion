@@ -36,9 +36,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
         MIaltaC = new javax.swing.JMenuItem();
         MIbajaC = new javax.swing.JMenuItem();
         MImodificarC = new javax.swing.JMenuItem();
+        MIconsultaC = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
+        MIsalir = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -68,6 +70,14 @@ public class VistaPrincipal extends javax.swing.JFrame {
         });
         jMenu1.add(MImodificarC);
 
+        MIconsultaC.setText("Consulta");
+        MIconsultaC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MIconsultaCActionPerformed(evt);
+            }
+        });
+        jMenu1.add(MIconsultaC);
+
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Abogado");
@@ -77,6 +87,15 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jMenuBar1.add(jMenu3);
 
         jMenu4.setText("Salir");
+
+        MIsalir.setText("Salir");
+        MIsalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MIsalirActionPerformed(evt);
+            }
+        });
+        jMenu4.add(MIsalir);
+
         jMenuBar1.add(jMenu4);
 
         setJMenuBar(jMenuBar1);
@@ -85,11 +104,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 453, Short.MAX_VALUE)
+            .addGap(0, 608, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 327, Short.MAX_VALUE)
+            .addGap(0, 380, Short.MAX_VALUE)
         );
 
         pack();
@@ -113,6 +132,14 @@ public class VistaPrincipal extends javax.swing.JFrame {
         else
             Controlador.VentanaModificacionCliente(dni);
     }//GEN-LAST:event_MImodificarCActionPerformed
+
+    private void MIconsultaCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MIconsultaCActionPerformed
+        Controlador.VentanaOpciones();
+    }//GEN-LAST:event_MIconsultaCActionPerformed
+
+    private void MIsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MIsalirActionPerformed
+       Controlador.Salir();
+    }//GEN-LAST:event_MIsalirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -152,7 +179,9 @@ public class VistaPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem MIaltaC;
     private javax.swing.JMenuItem MIbajaC;
+    private javax.swing.JMenuItem MIconsultaC;
     private javax.swing.JMenuItem MImodificarC;
+    private javax.swing.JMenuItem MIsalir;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;

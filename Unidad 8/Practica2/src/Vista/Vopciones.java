@@ -20,6 +20,7 @@ public class Vopciones extends javax.swing.JDialog {
     public Vopciones(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -90,41 +91,44 @@ public class Vopciones extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(86, 86, 86))
             .addGroup(layout.createSequentialGroup()
-                .addGap(55, 55, 55)
-                .addComponent(Bdni)
-                .addGap(60, 60, 60)
-                .addComponent(Bnombre)
-                .addGap(53, 53, 53)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Bcorreo)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(55, 55, 55)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(55, 55, 55)
+                        .addComponent(Bdni)
+                        .addGap(60, 60, 60)
+                        .addComponent(Bnombre)
+                        .addGap(65, 65, 65)
                         .addComponent(Bapellido)
-                        .addGap(66, 66, 66)
-                        .addComponent(Bdireccion)
-                        .addGap(70, 70, 70)
-                        .addComponent(Btelefono)))
-                .addContainerGap(97, Short.MAX_VALUE))
+                        .addGap(84, 84, 84)
+                        .addComponent(Bdireccion)))
+                .addContainerGap(31, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(63, 63, 63)
+                .addComponent(Bcorreo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Btelefono)
+                .addGap(159, 159, 159))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(46, 46, 46)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Bdni)
                     .addComponent(Bnombre)
                     .addComponent(Bapellido)
-                    .addComponent(Bdireccion)
-                    .addComponent(Btelefono))
-                .addGap(52, 52, 52)
-                .addComponent(Bcorreo)
-                .addContainerGap(64, Short.MAX_VALUE))
+                    .addComponent(Bdireccion))
+                .addGap(117, 117, 117)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Btelefono)
+                    .addComponent(Bcorreo))
+                .addContainerGap(153, Short.MAX_VALUE))
         );
 
         pack();
@@ -133,6 +137,7 @@ public class Vopciones extends javax.swing.JDialog {
     private void BdniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BdniActionPerformed
       String dato=JOptionPane.showInputDialog(this,"Introduce el dni");
         Controlador.ConsultaClienteS(Bdni.getText(),dato);
+        
     }//GEN-LAST:event_BdniActionPerformed
 
     private void BnombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BnombreActionPerformed
@@ -146,17 +151,17 @@ public class Vopciones extends javax.swing.JDialog {
     }//GEN-LAST:event_BapellidoActionPerformed
 
     private void BdireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BdireccionActionPerformed
-      String dato=JOptionPane.showInputDialog(this,"Introduce el dni");
+      String dato=JOptionPane.showInputDialog(this,"Introduce la direccion");
         Controlador.ConsultaClienteS(Bdireccion.getText(),dato);
     }//GEN-LAST:event_BdireccionActionPerformed
 
     private void BtelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtelefonoActionPerformed
-      int dato=Integer.parseInt(JOptionPane.showInputDialog(this,"Introduce el dni"));
+      int dato=Integer.parseInt(JOptionPane.showInputDialog(this,"Introduce el telefono"));
         Controlador.ConsultaClienteI(Btelefono.getText(),dato);
     }//GEN-LAST:event_BtelefonoActionPerformed
 
     private void BcorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BcorreoActionPerformed
-        String dato=JOptionPane.showInputDialog(this,"Introduce el dni");
+        String dato=JOptionPane.showInputDialog(this,"Introduce el correo");
         Controlador.ConsultaClienteS(Bcorreo.getText(),dato);
     }//GEN-LAST:event_BcorreoActionPerformed
 

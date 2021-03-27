@@ -283,7 +283,7 @@ private String correo;
                     .addGroup(layout.createSequentialGroup()
                         .addGap(187, 187, 187)
                         .addComponent(Baceptar)))
-                .addContainerGap(197, Short.MAX_VALUE))
+                .addContainerGap(248, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -318,7 +318,7 @@ private String correo;
                 .addComponent(Pabogados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(Baceptar)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -331,7 +331,7 @@ private String correo;
        TFapellidoAbogado.setText("");
        TFdireccionAbogado.setText("");
        FTFdniAbogado.requestFocus();
-        
+       Blisto.setVisible(false);
     }//GEN-LAST:event_BlistoActionPerformed
 
     private void TFcorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TFcorreoActionPerformed

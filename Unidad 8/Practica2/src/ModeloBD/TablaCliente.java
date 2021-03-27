@@ -64,19 +64,43 @@ public class TablaCliente {
         
         return d;
     }
-    public void ElegirConsulta(String nombre) throws Exception{
+    public Cliente [] Consulta(String nombre,String dato) throws Exception{
     String plantilla="";   
-     
-         plantilla="SELECT * FROM cliente WHERE lower(dni)=?;";
-     
-     
+     plantilla="SELECT * FROM cliente WHERE lower("+nombre+")=?;";
      PreparedStatement ps=con.prepareStatement(plantilla);
-   
-             
-             
-        
-           
-        
+     ps.setString(1,dato);
+     ResultSet resultado=ps.executeQuery();
+      Cliente c=new Cliente();
+       Cliente [] datos=new Cliente[1];
+     while(resultado.next()){
+         c.setDni(resultado.getString("Dni"));
+             c.setNombre(resultado.getString("Nombre"));
+             c.setApellido(resultado.getString("Apellido"));
+             c.setDireccion(resultado.getString("Direccion"));
+             c.setTelefono(resultado.getInt("Telefono"));
+             c.setCorreo(resultado.getString("Correo"));
+               datos[0]=c;
+     }
+            return datos;  
+    }
+     public Cliente [] ConsultaI(String nombre,int dato) throws Exception{
+    String plantilla="";   
+     plantilla="SELECT * FROM cliente WHERE lower("+nombre+")=?;";
+     PreparedStatement ps=con.prepareStatement(plantilla);
+     ps.setInt(1,dato);
+     ResultSet resultado=ps.executeQuery();
+      Cliente c=new Cliente();
+       Cliente [] datos=new Cliente[1];
+     while(resultado.next()){
+         c.setDni(resultado.getString("Dni"));
+             c.setNombre(resultado.getString("Nombre"));
+             c.setApellido(resultado.getString("Apellido"));
+             c.setDireccion(resultado.getString("Direccion"));
+             c.setTelefono(resultado.getInt("Telefono"));
+             c.setCorreo(resultado.getString("Correo"));
+               datos[0]=c;
+     }
+            return datos;  
     }
     public ArrayList ConsultaGeneral () throws Exception{
         String plantilla="SELECT * FROM cliente;";
@@ -94,25 +118,6 @@ public class TablaCliente {
                listaC.add(c);
         }
         return listaC;
-    }
-    public String [] Consulta(Cliente c) throws Exception{
-        String plantilla="SELECT * FROM cliente WHERE lower(dni)=?;";
-        PreparedStatement ps=con.prepareStatement(plantilla);
-        ps.setString(1, c.getDni());
-        
-        
-        String [] lista=new String[6];
-        ResultSet resultado=ps.executeQuery();
-        if(resultado.next()){
-            lista[0]=resultado.getString("Dni");
-            lista[1]=resultado.getString("Nombre");
-            lista[2]=resultado.getString("Apellido");
-            lista[3]=resultado.getString("Direccion");
-            lista[4]=resultado.getString("Telefono");
-            lista[5]=resultado.getString("Correo");
-            
-        } 
-        return lista;
     }
     public boolean ModificarDatos(String [] l) throws Exception{
         String plantilla="UPDATE cliente SET Dni=?,Nombre=?,Apellido=?,Direccion=?,Telefono=?,Correo=? WHERE lower(dni)=?;";
