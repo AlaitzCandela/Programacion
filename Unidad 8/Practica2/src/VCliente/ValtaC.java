@@ -325,7 +325,7 @@ private String correo;
     }// </editor-fold>//GEN-END:initComponents
 
     private void BlistoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BlistoActionPerformed
-       Controlador.LlenarArrayListAbogado(dniA,nombreA,apellidoA,dirA);
+       Controlador.Abogado(dniA,nombreA,apellidoA,dirA);
        FTFdniAbogado.setText("");
        TFnombreAbogado.setText("");
        TFapellidoAbogado.setText("");
@@ -342,22 +342,22 @@ private String correo;
     }//GEN-LAST:event_TFcorreoActionPerformed
 
     private void FTFdniAbogadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FTFdniAbogadoActionPerformed
-        dniA=FTFdni.getText();
+        dniA=FTFdniAbogado.getText();
         TFnombreAbogado.requestFocus();
     }//GEN-LAST:event_FTFdniAbogadoActionPerformed
 
     private void TFnombreAbogadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TFnombreAbogadoActionPerformed
-        nombreA=TFnombre.getText();
+        nombreA=TFnombreAbogado.getText();
         TFapellidoAbogado.requestFocus();
     }//GEN-LAST:event_TFnombreAbogadoActionPerformed
 
     private void TFapellidoAbogadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TFapellidoAbogadoActionPerformed
-       apellidoA=TFapellido.getText();
+       apellidoA=TFapellidoAbogado.getText();
        TFdireccionAbogado.requestFocus();
     }//GEN-LAST:event_TFapellidoAbogadoActionPerformed
 
     private void TFdireccionAbogadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TFdireccionAbogadoActionPerformed
-        dirA=TFdireccion.getText();
+        dirA=TFdireccionAbogado.getText();
         Blisto.setVisible(true);
         
     }//GEN-LAST:event_TFdireccionAbogadoActionPerformed

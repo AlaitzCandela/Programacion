@@ -39,6 +39,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         MIconsultaC = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
+        MIaltaCaso = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         MIsalir = new javax.swing.JMenuItem();
 
@@ -84,6 +85,15 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Casos");
+
+        MIaltaCaso.setText("Alta");
+        MIaltaCaso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MIaltaCasoActionPerformed(evt);
+            }
+        });
+        jMenu3.add(MIaltaCaso);
+
         jMenuBar1.add(jMenu3);
 
         jMenu4.setText("Salir");
@@ -141,6 +151,10 @@ public class VistaPrincipal extends javax.swing.JFrame {
        Controlador.Salir();
     }//GEN-LAST:event_MIsalirActionPerformed
 
+    private void MIaltaCasoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MIaltaCasoActionPerformed
+       Controlador.VentanaAltaCaso();
+    }//GEN-LAST:event_MIaltaCasoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -178,6 +192,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem MIaltaC;
+    private javax.swing.JMenuItem MIaltaCaso;
     private javax.swing.JMenuItem MIbajaC;
     private javax.swing.JMenuItem MIconsultaC;
     private javax.swing.JMenuItem MImodificarC;

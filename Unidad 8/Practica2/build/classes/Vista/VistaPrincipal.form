@@ -52,6 +52,16 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Casos"/>
           </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="MIaltaCaso">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Alta"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MIaltaCasoActionPerformed"/>
+              </Events>
+            </MenuItem>
+          </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu4">
           <Properties>

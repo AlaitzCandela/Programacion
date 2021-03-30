@@ -3,6 +3,7 @@ package Controlador;
 
 import Modelo.*;
 import ModeloBD.*;
+import VCasoJuicio.*;
 import VCliente.*;
 import Vista.*;
 import java.time.LocalDate;
@@ -28,6 +29,7 @@ public class Controlador {
     private static VmodificacionC vmc;
     private static Vopciones vo;
     private static VconsultaC vcc;
+    private static ValtaCaso vaCaso;
     
     
     
@@ -49,16 +51,22 @@ public class Controlador {
         vac=new ValtaC(vp,true);
         vac.setVisible(true);
     }
-    public static void LlenarArrayListAbogado(String d,String n,String ap,String di){
-       boolean iAbogado=false;
+    public static void Abogado(String d,String n,String ap,String di){
+       boolean iAbogado=false,abogado=false;
+       Abogado [] ab=new Abogado[4];
         a=new Abogado(d,n,ap,di);
+        String nom="Dni";
+        
         try{
-                iAbogado=ta.Insertar(a);
+                ab=ta.Consulta(nom,d);
+                if(ab[0]==null){
+                    iAbogado=ta.Insertar(a);
+                    abogado=true;
+                }
         }
         catch(Exception e){
                System.out.println(e.getMessage());
          }
-         System.out.println(iAbogado);
         cj=new CasoJuicio();
         cj.setAbogados(a);
         
@@ -195,6 +203,24 @@ public class Controlador {
     public static void VentanaConsulta(String d){
         vcc=new VconsultaC(vp,true,d);
         vcc.setVisible(true);
+    }
+    public static void VentanaAltaCaso(){
+        vaCaso=new ValtaCaso(vp,true);
+        vaCaso.setVisible(true);
+    }
+    public static String [] DatosCaso(){
+       
+       int nExp=(int)(Math.random()*1000);
+       String numeroExpediente=Integer.toString(nExp);
+       LocalDate fechaI=LocalDate.now();
+       String fechaInicio=fechaI.toString();
+       
+       String[] DatosCaso=new String[2];
+       DatosCaso[0]=fechaInicio;
+       DatosCaso[1]=numeroExpediente;
+       
+       return DatosCaso;
+       
     }
     public static void Volver(JDialog jd){
         jd.dispose();
