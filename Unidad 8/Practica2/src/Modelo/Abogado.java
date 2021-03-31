@@ -87,7 +87,7 @@ public class Abogado {
 
     @Override
     public String toString() {
-        return  "dni:" + dni + ",nombre:" + nombre + "apellido:" + apellido + "direccion:" + direccion + "casoJuicio:" + casoJuicio ;
+        return  "dni:" + dni + " nombre:" + nombre + " apellido:" + apellido  ;
     }
      
 }

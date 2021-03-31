@@ -40,6 +40,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
         MIaltaCaso = new javax.swing.JMenuItem();
+        MIbaja = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         MIsalir = new javax.swing.JMenuItem();
 
@@ -93,6 +94,14 @@ public class VistaPrincipal extends javax.swing.JFrame {
             }
         });
         jMenu3.add(MIaltaCaso);
+
+        MIbaja.setText("Baja");
+        MIbaja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MIbajaActionPerformed(evt);
+            }
+        });
+        jMenu3.add(MIbaja);
 
         jMenuBar1.add(jMenu3);
 
@@ -155,6 +164,10 @@ public class VistaPrincipal extends javax.swing.JFrame {
        Controlador.VentanaAltaCaso();
     }//GEN-LAST:event_MIaltaCasoActionPerformed
 
+    private void MIbajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MIbajaActionPerformed
+        Controlador.VentanaBajaCaso();
+    }//GEN-LAST:event_MIbajaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -193,6 +206,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem MIaltaC;
     private javax.swing.JMenuItem MIaltaCaso;
+    private javax.swing.JMenuItem MIbaja;
     private javax.swing.JMenuItem MIbajaC;
     private javax.swing.JMenuItem MIconsultaC;
     private javax.swing.JMenuItem MImodificarC;

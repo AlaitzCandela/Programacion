@@ -6,6 +6,9 @@
 package VCasoJuicio;
 
 import Controlador.Controlador;
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -13,7 +16,8 @@ import Controlador.Controlador;
  */
 public class ValtaCaso extends javax.swing.JDialog {
 private String dni;
-private String[] DatosCaso=new String[2];
+private ArrayList <String> DatosCaso=new ArrayList();
+private DefaultListModel model= new DefaultListModel<>();
     /**
      * Creates new form ValtaCaso
      */
@@ -28,11 +32,19 @@ private String[] DatosCaso=new String[2];
     public void Datos(){
          
          DatosCaso=Controlador.DatosCaso();
-         TFnumExp.setText(DatosCaso[1]);
-         TFfechaI.setText(DatosCaso[0]);
+         TFnumExp.setText(DatosCaso.get(1));
+         TFfechaI.setText(DatosCaso.get(0));
          TFestado.setText("En tramite");
+         SetModel();
+         JLabogados.setModel(model);
     }
-
+    public DefaultListModel SetModel(){
+        for (int x=2;x<DatosCaso.size();x++){
+            model.addElement(DatosCaso.get(x));
+        
+        }
+        return model;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -52,6 +64,8 @@ private String[] DatosCaso=new String[2];
         TFnumExp = new javax.swing.JTextField();
         TFestado = new javax.swing.JTextField();
         TFdniC = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        JLabogados = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -85,6 +99,10 @@ private String[] DatosCaso=new String[2];
             }
         });
 
+        jScrollPane1.setViewportBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jScrollPane1.setViewportView(JLabogados);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -92,32 +110,29 @@ private String[] DatosCaso=new String[2];
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(136, 136, 136)
-                        .addComponent(jLabel2)
-                        .addGap(48, 48, 48)
-                        .addComponent(TFnumExp, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(265, 265, 265)
-                        .addComponent(Baceptar)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(Baceptar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(136, 136, 136)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel6))
+                                .addGap(48, 48, 48)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(TFfechaI, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(TFestado, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(TFnumExp, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(TFdniC, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(139, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(242, 242, 242)
                 .addComponent(jLabel1)
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(140, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel6))
-                        .addGap(81, 81, 81)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(TFfechaI, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TFestado, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TFdniC, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(168, 168, 168))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -128,19 +143,21 @@ private String[] DatosCaso=new String[2];
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TFnumExp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addGap(46, 46, 46)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TFfechaI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TFestado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addGap(42, 42, 42)
+                    .addComponent(jLabel5)
+                    .addComponent(TFestado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TFdniC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
-                .addGap(42, 42, 42)
+                    .addComponent(jLabel6)
+                    .addComponent(TFdniC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Baceptar)
                 .addGap(51, 51, 51))
         );
@@ -154,7 +171,19 @@ private String[] DatosCaso=new String[2];
     }//GEN-LAST:event_TFdniCActionPerformed
 
     private void BaceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BaceptarActionPerformed
-       Controlador.AltaCliente(DatosCaso[1],DatosCaso[0],dni,TFestado.getText()) ;
+       boolean insertar=false;
+       ArrayList <String> AbogadoSeleccionado=new ArrayList();
+       for(int x=0;x<AbogadoSeleccionado.size();x++){
+           AbogadoSeleccionado.add(JLabogados.getSelectedValue());
+       }
+       
+       Controlador.AbogadoCaso(AbogadoSeleccionado,dni);
+        insertar=Controlador.AltaCaso(DatosCaso.get(1),DatosCaso.get(0),dni,TFestado.getText());
+        if(insertar==true)
+            JOptionPane.showMessageDialog(this,"Caso dado de alta");
+        else
+            JOptionPane.showMessageDialog(this,"El caso no se ha dado de alta");
+        Controlador.Volver(this);
     }//GEN-LAST:event_BaceptarActionPerformed
 
     /**
@@ -201,6 +230,7 @@ private String[] DatosCaso=new String[2];
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Baceptar;
+    private javax.swing.JList<String> JLabogados;
     private javax.swing.JTextField TFdniC;
     private javax.swing.JTextField TFestado;
     private javax.swing.JTextField TFfechaI;
@@ -210,5 +240,6 @@ private String[] DatosCaso=new String[2];
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

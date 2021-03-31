@@ -5,7 +5,9 @@
  */
 package ModeloBD;
 
+import Modelo.CasoJuicio;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -38,5 +40,25 @@ public class TablaCasoJuicio {
             Nexpediente=true;
         
         return Nexpediente;
+    }
+    public boolean Insertar(CasoJuicio cj) throws Exception{
+        boolean insertar=false;
+        String plantilla="INSERT INTO casojuicio VALUES(?,?,?,?,?);";
+        PreparedStatement ps=con.prepareStatement(plantilla);
+       Date fechaI=Date.valueOf(cj.getFechaInicio());
+       
+        
+        ps.setInt(1, cj.getNumExp());
+        ps.setDate(2,fechaI);
+        ps.setDate(3, null);
+        ps.setString(4, cj.getEstado().toString());
+        ps.setString(5, cj.getC().getDni());
+        
+        int n=ps.executeUpdate();
+        if(n!=1)
+            throw new Exception ("La fila CasoJuicio no ha sido insertada");
+        else
+            insertar=true;
+        return insertar;
     }
 }

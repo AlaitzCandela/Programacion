@@ -16,6 +16,7 @@ public class Controlador {
     private static TablaAbogado ta;
     private static TablaCasoJuicio tcj;
     private static TablaCliente tc;
+    private static TablaAbogadoCaso tac;
 //base
     private static BaseDatos bd;
 //Modelo
@@ -30,6 +31,7 @@ public class Controlador {
     private static Vopciones vo;
     private static VconsultaC vcc;
     private static ValtaCaso vaCaso;
+    private static VbajaCaso vbCaso;
     
     
     
@@ -40,6 +42,7 @@ public class Controlador {
             tc=new TablaCliente(bd.getCon());
             tcj=new TablaCasoJuicio(bd.getCon());
             ta=new TablaAbogado(bd.getCon());
+            tac=new TablaAbogadoCaso(bd.getCon());
             vp=new VistaPrincipal();
             vp.setVisible(true);
        }
@@ -208,20 +211,62 @@ public class Controlador {
         vaCaso=new ValtaCaso(vp,true);
         vaCaso.setVisible(true);
     }
-    public static String [] DatosCaso(){
-       
+    public static ArrayList <String> DatosCaso(){
        int nExp=(int)(Math.random()*1000);
        String numeroExpediente=Integer.toString(nExp);
        LocalDate fechaI=LocalDate.now();
        String fechaInicio=fechaI.toString();
        
-       String[] DatosCaso=new String[2];
-       DatosCaso[0]=fechaInicio;
-       DatosCaso[1]=numeroExpediente;
+       ArrayList <Abogado> listaAbogado=new ArrayList();
+       try{
+           listaAbogado=ta.ConsultaGeneral();
+       }
+       catch(Exception e){
+           System.out.println(e.getMessage());
+         }
        
+        ArrayList <String> DatosCaso=new ArrayList();
+       DatosCaso.add(fechaInicio);
+       DatosCaso.add(numeroExpediente);
+       for(int x=0;x<listaAbogado.size();x++){
+            DatosCaso.add(listaAbogado.get(x).toString());
+        }
        return DatosCaso;
        
     }
+    public static void AbogadoCaso(ArrayList AbogadoSeleccionado,String dni){
+        try{
+            
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    public static boolean AltaCaso(String numExp,String fechaInicio, String dni,String estado){
+        c=new Cliente();
+        c.setDni(dni);
+        cj=new CasoJuicio();
+        cj.setNumExp(Integer.parseInt(numExp));
+        cj.setFechaInicio(LocalDate.parse(fechaInicio));
+        cj.setEstado(EstadoCaso.TRAMITADO);
+        cj.setC(c);
+        cj.setFechaFin(null);
+        
+        boolean insertar=false;
+        try{
+            insertar=tcj.Insertar(cj);
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        
+        return insertar;
+        
+    }
+    public static void VentanaBajaCaso(){
+        vbCaso=new VbajaCaso(vp,true);
+        vbCaso.setVisible(true);
+    }  
     public static void Volver(JDialog jd){
         jd.dispose();
     }
