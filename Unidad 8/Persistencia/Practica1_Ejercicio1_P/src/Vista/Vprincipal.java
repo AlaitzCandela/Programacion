@@ -19,6 +19,7 @@ public class Vprincipal extends javax.swing.JFrame {
      */
     public Vprincipal() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -108,12 +109,14 @@ public class Vprincipal extends javax.swing.JFrame {
     private void TFopcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TFopcionActionPerformed
        if(Integer.parseInt(TFopcion.getText())==1){
             Controlador.VInsertar();
+            TFopcion.setText("");
         }
         else
             if(Integer.parseInt(TFopcion.getText())==2){
                 String n=JOptionPane.showInputDialog(this,"Introduce el nombre de la persona");
                 try{
-                Controlador.VConsultarDatos(n);
+                    Controlador.VConsultarDatos(n);
+                    TFopcion.setText("");
                 }
                 catch(Exception e){
                     JOptionPane.showMessageDialog(this,e.getClass()+e.getMessage());
@@ -123,6 +126,7 @@ public class Vprincipal extends javax.swing.JFrame {
                 if(Integer.parseInt(TFopcion.getText())==3){
                     try{
                     Controlador.VConsulta();
+                    TFopcion.setText("");
                     }
                     catch(Exception e){
                     JOptionPane.showMessageDialog(this,e.getClass()+e.getMessage());

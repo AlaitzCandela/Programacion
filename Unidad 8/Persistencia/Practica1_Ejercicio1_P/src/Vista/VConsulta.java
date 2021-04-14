@@ -5,19 +5,24 @@
  */
 package Vista;
 
+import practica1_ejercicio1_p.Controlador;
+
 /**
  *
  * @author 1GDAW07
  */
 public class VConsulta extends javax.swing.JDialog {
-
+private static String d;
     /**
      * Creates new form VConsulta
      */
-    public VConsulta(java.awt.Frame parent, boolean modal) {
+    public VConsulta(java.awt.Frame parent, boolean modal,String datos) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);
+        TAconsulta.setText(datos);
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -28,21 +33,63 @@ public class VConsulta extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        TAconsulta = new javax.swing.JTextArea();
+        Baceptar = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel1.setText("Consultas");
+
+        TAconsulta.setEditable(false);
+        TAconsulta.setColumns(20);
+        TAconsulta.setRows(5);
+        jScrollPane1.setViewportView(TAconsulta);
+
+        Baceptar.setText("Aceptar");
+        Baceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BaceptarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(217, 217, 217)
+                        .addComponent(Baceptar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(198, 198, 198)
+                        .addComponent(jLabel1)))
+                .addContainerGap(75, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(Baceptar)
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void BaceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BaceptarActionPerformed
+        Controlador.Volver(this);
+    }//GEN-LAST:event_BaceptarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -74,7 +121,7 @@ public class VConsulta extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                VConsulta dialog = new VConsulta(new javax.swing.JFrame(), true);
+                VConsulta dialog = new VConsulta(new javax.swing.JFrame(), true,d);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -87,5 +134,9 @@ public class VConsulta extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Baceptar;
+    private javax.swing.JTextArea TAconsulta;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

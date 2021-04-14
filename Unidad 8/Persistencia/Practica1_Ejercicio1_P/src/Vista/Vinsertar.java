@@ -5,18 +5,29 @@
  */
 package Vista;
 
+import ModeloBD.exceptions.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
+import practica1_ejercicio1_p.Controlador;
+
 /**
  *
  * @author 1GDAW07
  */
 public class Vinsertar extends javax.swing.JDialog {
-
+private String nombre;
+private int edad;
+private String profesion;
+private int telefono;
     /**
      * Creates new form Vinsertar
      */
     public Vinsertar(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);
+        Baceptar.setVisible(false);
     }
 
     /**
@@ -33,11 +44,11 @@ public class Vinsertar extends javax.swing.JDialog {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        TFnombre = new javax.swing.JTextField();
+        TFedad = new javax.swing.JTextField();
+        TFprofesion = new javax.swing.JTextField();
+        TFtelefono = new javax.swing.JTextField();
+        Baceptar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -52,7 +63,36 @@ public class Vinsertar extends javax.swing.JDialog {
 
         jLabel5.setText("Teléfono");
 
-        jButton1.setText("Aceptar");
+        TFnombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TFnombreActionPerformed(evt);
+            }
+        });
+
+        TFedad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TFedadActionPerformed(evt);
+            }
+        });
+
+        TFprofesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TFprofesionActionPerformed(evt);
+            }
+        });
+
+        TFtelefono.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TFtelefonoActionPerformed(evt);
+            }
+        });
+
+        Baceptar.setText("Aceptar");
+        Baceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BaceptarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -69,22 +109,22 @@ public class Vinsertar extends javax.swing.JDialog {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE))
+                                .addComponent(TFprofesion, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(TFtelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
                                     .addComponent(jLabel3))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextField1)
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)))))
+                                    .addComponent(TFnombre)
+                                    .addComponent(TFedad, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(166, 166, 166)
-                        .addComponent(jButton1)))
+                        .addComponent(Baceptar)))
                 .addContainerGap(142, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -95,26 +135,157 @@ public class Vinsertar extends javax.swing.JDialog {
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TFnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TFedad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TFprofesion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TFtelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
-                .addComponent(jButton1)
+                .addComponent(Baceptar)
                 .addContainerGap(80, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void TFnombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TFnombreActionPerformed
+       try{
+                if(TFnombre.getText().isEmpty()){
+                    throw new Llenar();
+                 }
+                else
+                    if(TFnombre.getText().length()<2){
+                        throw new DatoNoValido("Nombre Demasiado Corto");
+                    }
+                    else{
+                        Pattern patron=Pattern.compile("^[A-Z][a-z]$");
+                        Matcher m=patron.matcher(TFnombre.getText());
+                        if(m.matches())
+                            throw new DatoNoValido("El nombre tiene que ser de letras");
+                        else
+                            nombre=TFnombre.getText();
+                            TFedad.requestFocus();
+                    }
+                        
+            }
+        catch(Llenar e){
+            JOptionPane.showMessageDialog(this,"El campo esta vacio");
+        }
+        catch(DatoNoValido e){
+             JOptionPane.showMessageDialog(this,e.getMessage());
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(this,e.getMessage()+e.getClass());
+        }
+    }//GEN-LAST:event_TFnombreActionPerformed
+
+    private void TFedadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TFedadActionPerformed
+       try{
+           if(TFedad.getText().isEmpty()){
+               throw new Llenar();
+           }
+           else
+               if(TFedad.getText().length()>=3){
+                   throw new DatoNoValido("La edad tiene que ser 1 o 2 numeros");
+               }
+               else{
+                   Pattern patron=Pattern.compile("^[0-9]$");
+                   Matcher m=patron.matcher(TFedad.getText());
+                   if(m.matches())
+                       throw new DatoNoValido("La edad tiene que ser en numeros");
+                   else
+                       edad=Integer.parseInt(TFedad.getText());
+                       TFprofesion.requestFocus();
+               }
+       }
+       catch(Llenar e){
+           JOptionPane.showMessageDialog(this,"El campo esta vacio");
+       }
+       catch(DatoNoValido e){
+           JOptionPane.showMessageDialog(this,e.getMessage());
+       }
+       catch(Exception e){
+            JOptionPane.showMessageDialog(this,e.getMessage()+e.getClass());
+       }
+    }//GEN-LAST:event_TFedadActionPerformed
+
+    private void TFprofesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TFprofesionActionPerformed
+       try{
+            if(TFprofesion.getText().isEmpty()){
+                throw new Llenar();
+            }
+            else
+                if(TFprofesion.getText().length()<5){
+                    throw new DatoNoValido("La profesion es demasiado corta");
+                }
+                else{
+                    Pattern patron=Pattern.compile("^[A-Z][a-z]$");
+                    Matcher m=patron.matcher(TFprofesion.getText());
+                    if(m.matches())
+                        throw new DatoNoValido("La profesion tienen que ser palabras");
+                    else
+                        profesion=TFprofesion.getText();
+                        TFtelefono.requestFocus();
+                }
+        }
+        catch(Llenar e){
+             JOptionPane.showMessageDialog(this,"El campo esta vacio");
+        }
+        catch(DatoNoValido e){
+            JOptionPane.showMessageDialog(this,e.getMessage());
+        }
+        catch(Exception e ){
+            JOptionPane.showMessageDialog(this,e.getMessage()+e.getClass());
+        }
+    }//GEN-LAST:event_TFprofesionActionPerformed
+
+    private void TFtelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TFtelefonoActionPerformed
+      try{
+            if(TFtelefono.getText().isEmpty())
+                throw new Llenar();
+            else
+                if(TFtelefono.getText().length()!=9)
+                    throw new DatoNoValido("El telefono son 9 numeros");
+                else{
+                    Pattern patron=Pattern.compile("^[0-9]{9}$");
+                    Matcher m=patron.matcher(TFtelefono.getText());
+                    if(!m.matches())
+                        throw new DatoNoValido("El telefono tienen que ser numeros");
+                    else
+                        telefono=Integer.parseInt(TFtelefono.getText());
+                }
+                    
+        }
+        catch(Llenar e){
+            JOptionPane.showMessageDialog(this,"El campo esta vacio");
+        }
+        catch(DatoNoValido e){
+            JOptionPane.showMessageDialog(this,e.getMessage());
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(this,e.getMessage()+e.getClass());
+        }
+    }//GEN-LAST:event_TFtelefonoActionPerformed
+
+    private void BaceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BaceptarActionPerformed
+        try{
+        Controlador.Insertar(nombre,edad,profesion,telefono);
+        JOptionPane.showMessageDialog(this,"Persona registrada correctamente");
+        Controlador.Volver(this);
+        
+       }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(this,e.getMessage()+e.getClass());
+        }
+    }//GEN-LAST:event_BaceptarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -159,15 +330,15 @@ public class Vinsertar extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton Baceptar;
+    private javax.swing.JTextField TFedad;
+    private javax.swing.JTextField TFnombre;
+    private javax.swing.JTextField TFprofesion;
+    private javax.swing.JTextField TFtelefono;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
 }

@@ -113,7 +113,7 @@ public class Persona implements Serializable {
 
     @Override
     public String toString() {
-        return "ModeloBD.Persona[ nombre=" + nombre + " ]";
+        return "nombre= "+nombre+" ,edad= "+edad+" ,profesion= "+profesion+" ,telefono= "+telefono;
     }
     
 }
