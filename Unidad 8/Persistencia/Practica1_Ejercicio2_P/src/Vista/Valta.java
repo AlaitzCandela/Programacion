@@ -5,18 +5,34 @@
  */
 package Vista;
 
+import Modelo.BD.exceptions.*;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
+import practica1_ejercicio2_p.Controlador;
+
 /**
  *
  * @author 1GDAW07
  */
 public class Valta extends javax.swing.JDialog {
-
+private String nombre;
+private String lugar;
+private LocalDate fecha;
+private LocalTime HoraInicio;
+private LocalTime horaFin;
+private int aforo;
     /**
      * Creates new form Valta
      */
     public Valta(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);
+        Baceptar.setVisible(false);
     }
 
     /**
@@ -35,13 +51,13 @@ public class Valta extends javax.swing.JDialog {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        TFnombre = new javax.swing.JTextField();
+        TFlugar = new javax.swing.JTextField();
+        TFaforo = new javax.swing.JTextField();
+        Baceptar = new javax.swing.JButton();
+        FTFfecha = new javax.swing.JFormattedTextField();
+        FTFhoraInicio = new javax.swing.JFormattedTextField();
+        FTFhoraFin = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -60,13 +76,63 @@ public class Valta extends javax.swing.JDialog {
 
         jLabel7.setText("Aforo");
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        TFnombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                TFnombreActionPerformed(evt);
             }
         });
 
-        jButton1.setText("Aceptar");
+        TFlugar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TFlugarActionPerformed(evt);
+            }
+        });
+
+        TFaforo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TFaforoActionPerformed(evt);
+            }
+        });
+
+        Baceptar.setText("Aceptar");
+        Baceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BaceptarActionPerformed(evt);
+            }
+        });
+
+        try {
+            FTFfecha.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        FTFfecha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FTFfechaActionPerformed(evt);
+            }
+        });
+
+        try {
+            FTFhoraInicio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        FTFhoraInicio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FTFhoraInicioActionPerformed(evt);
+            }
+        });
+
+        try {
+            FTFhoraFin.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        FTFhoraFin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FTFhoraFinActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -76,38 +142,40 @@ public class Valta extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(40, 40, 40)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3)
-                                    .addComponent(jLabel4)
                                     .addComponent(jLabel5)
                                     .addComponent(jLabel6)
                                     .addComponent(jLabel7))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                            .addGap(13, 13, 13)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(FTFfecha)
+                                                .addComponent(TFlugar, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(FTFhoraFin)))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(13, 13, 13)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                            .addComponent(TFaforo, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(FTFhoraInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(27, 27, 27)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(TFnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel4)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(224, 224, 224)
-                        .addComponent(jLabel1)))
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(199, 199, 199)
-                .addComponent(jButton1)
-                .addContainerGap(172, Short.MAX_VALUE))
+                        .addGap(180, 180, 180)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(163, 163, 163)
+                        .addComponent(Baceptar)))
+                .addContainerGap(165, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -117,38 +185,151 @@ public class Valta extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TFnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TFlugar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(FTFfecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(13, 13, 13)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
+                    .addComponent(jLabel5)
+                    .addComponent(FTFhoraInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(TFaforo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7)))
+                    .addComponent(FTFhoraFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addComponent(Baceptar)
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    private void TFlugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TFlugarActionPerformed
+         try{
+            if(TFlugar.getText().isEmpty())
+                throw new Llenar("El campo nombre no puede estar vacio");
+            else
+                if(TFlugar.getText().length()<3)
+                    throw new DatoNoValido("Tiene que ser mas de tres cáracteres");
+                else{
+                    Pattern patron=Pattern.compile("^[A-Z][a-z]*$");
+                    Matcher m=patron.matcher(TFlugar.getText());
+                    if(!m.matches())
+                        throw new DatoNoValido("Tiene que ser todo letras");
+                    else
+                        FTFfecha.requestFocus();
+                        lugar=TFlugar.getText();
+                }
+        }
+        catch(Llenar e){
+            JOptionPane.showMessageDialog(this,e.getMessage());
+        }
+        catch(DatoNoValido e){
+            JOptionPane.showMessageDialog(this,e.getMessage());
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(this,e.getClass()+e.getMessage());
+        }
+    }//GEN-LAST:event_TFlugarActionPerformed
+
+    private void TFnombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TFnombreActionPerformed
+        try{
+        if(TFnombre.getText().isEmpty())
+            throw new Llenar("El campo nombre no puede estar vacio");
+        else
+            if(TFnombre.getText().length()<2)
+                throw new DatoNoValido("El nombre tiene que tener más de dos cáracteres");
+            else{
+                Pattern patron=Pattern.compile("^[A-Z][a-z]*$");
+                Matcher m=patron.matcher(TFnombre.getText());
+                if(!m.matches())
+                    throw new DatoNoValido("El nombre tiene que ser todo letras");
+                else
+                nombre=TFnombre.getText();
+                TFlugar.requestFocus();
+                }    
+            }
+        catch(Llenar e){
+            JOptionPane.showMessageDialog(this,e.getMessage());
+        }
+        catch(DatoNoValido e){
+            JOptionPane.showMessageDialog(this,e.getMessage());
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(this,e.getClass()+e.getMessage());
+        }
+            
+    }//GEN-LAST:event_TFnombreActionPerformed
+
+    private void FTFfechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FTFfechaActionPerformed
+        DateTimeFormatter f=DateTimeFormatter.ofPattern("dd/MM/yy");
+        fecha=LocalDate.parse(FTFfecha.getText(),f);
+        FTFhoraInicio.requestFocus();
+    }//GEN-LAST:event_FTFfechaActionPerformed
+
+    private void FTFhoraInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FTFhoraInicioActionPerformed
+       HoraInicio=LocalTime.parse(FTFhoraInicio.getText());
+    FTFhoraFin.requestFocus();
+    }//GEN-LAST:event_FTFhoraInicioActionPerformed
+
+    private void FTFhoraFinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FTFhoraFinActionPerformed
+        horaFin=LocalTime.parse(FTFhoraFin.getText());
+    TFaforo.requestFocus();
+    }//GEN-LAST:event_FTFhoraFinActionPerformed
+
+    private void TFaforoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TFaforoActionPerformed
+        try{
+        if(TFaforo.getText().isEmpty())
+           throw new Llenar("El aforo no puede estar vacio");
+       else
+           if(TFaforo.getText().length()<2)
+               throw new DatoNoValido("El aforo tiene que ser mas de 10");
+           else{
+               Pattern patron=Pattern.compile("[0-9]{2,}$");
+               Matcher m=patron.matcher((TFaforo.getText()));
+               if(!m.matches())
+                   throw new DatoNoValido("El aforo tiene que ser numeros");
+               else
+               aforo=Integer.parseInt(TFaforo.getText());
+               Baceptar.setVisible(true);
+           }
+               
+        
+       }
+       catch(Llenar e){
+            JOptionPane.showMessageDialog(this,e.getMessage());
+        }
+        catch(DatoNoValido e){
+            JOptionPane.showMessageDialog(this,e.getMessage());
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(this,e.getClass()+e.getMessage());
+        }
+    }//GEN-LAST:event_TFaforoActionPerformed
+
+    private void BaceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BaceptarActionPerformed
+        boolean evento=true;
+        evento=Controlador.Insertar(nombre,lugar,fecha,HoraInicio,horaFin,aforo);
+        if(evento==true){
+            JOptionPane.showMessageDialog(this,"El evento ha sido guardado correctamente");
+            Controlador.Volver(this);
+        }
+        else{
+            JOptionPane.showMessageDialog(this,"El evento no ha sido guardado correctamente");
+            Controlador.Volver(this);
+        }
+    }//GEN-LAST:event_BaceptarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -193,7 +374,13 @@ public class Valta extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton Baceptar;
+    private javax.swing.JFormattedTextField FTFfecha;
+    private javax.swing.JFormattedTextField FTFhoraFin;
+    private javax.swing.JFormattedTextField FTFhoraInicio;
+    private javax.swing.JTextField TFaforo;
+    private javax.swing.JTextField TFlugar;
+    private javax.swing.JTextField TFnombre;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -201,11 +388,5 @@ public class Valta extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
     // End of variables declaration//GEN-END:variables
 }

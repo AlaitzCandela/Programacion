@@ -5,18 +5,26 @@
  */
 package Vista;
 
+import Modelo.BD.exceptions.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
+import practica1_ejercicio2_p.Controlador;
+
 /**
  *
  * @author 1GDAW07
  */
 public class Vbaja extends javax.swing.JDialog {
-
+private String nombre;
     /**
      * Creates new form Vbaja
      */
     public Vbaja(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);
+        Baceptar.setVisible(false);
     }
 
     /**
@@ -28,21 +36,112 @@ public class Vbaja extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        TFnombre = new javax.swing.JTextField();
+        Baceptar = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel1.setText("Baja");
+
+        jLabel2.setText("Introducce el nombre del evento");
+
+        TFnombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TFnombreActionPerformed(evt);
+            }
+        });
+
+        Baceptar.setText("Aceptar");
+        Baceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BaceptarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(192, 192, 192)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(TFnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(167, 167, 167)
+                        .addComponent(Baceptar)))
+                .addContainerGap(79, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(105, 105, 105)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(TFnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(38, 38, 38)
+                .addComponent(Baceptar)
+                .addContainerGap(135, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void TFnombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TFnombreActionPerformed
+        try{
+        if(TFnombre.getText().isEmpty())
+            throw new Llenar("El campo nombre no puede estar vacio");
+        else
+            if(TFnombre.getText().length()<2)
+                throw new DatoNoValido("El nombre tiene que tener más de dos cáracteres");
+            else{
+                Pattern patron=Pattern.compile("[A-Z][a-z]*");
+                Matcher m=patron.matcher(TFnombre.getText());
+                if(!m.matches())
+                    throw new DatoNoValido("El nombre tiene que ser todo letras");
+                else
+                    nombre=TFnombre.getText();
+                    Baceptar.setVisible(true);
+                }    
+            }
+        catch(Llenar e){
+            JOptionPane.showMessageDialog(this,e.getMessage());
+        }
+        catch(DatoNoValido e){
+            JOptionPane.showMessageDialog(this,e.getMessage());
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(this,e.getClass()+e.getMessage());
+        }
+    }//GEN-LAST:event_TFnombreActionPerformed
+
+    private void BaceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BaceptarActionPerformed
+        int n=0;
+        boolean borrar=true;
+        n=JOptionPane.showConfirmDialog(this,"¿Estas Seguro que quieres cancelar el evento "+nombre+"?");
+        if(n==0)
+            borrar=Controlador.Borrar(nombre);
+        else
+            JOptionPane.showMessageDialog(this,"Operación cancelada");
+        
+        if(borrar==true){
+            JOptionPane.showMessageDialog(this,"El evento "+nombre+"ha sido borrado correctamente");
+            Controlador.Volver(this);
+        }
+        else
+            JOptionPane.showMessageDialog(this,"El evento "+nombre+"no ha sido borrado correctamente");
+            Controlador.Volver(this);
+    }//GEN-LAST:event_BaceptarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -87,5 +186,9 @@ public class Vbaja extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Baceptar;
+    private javax.swing.JTextField TFnombre;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }

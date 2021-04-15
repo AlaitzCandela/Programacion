@@ -78,6 +78,11 @@ public class Vprincipal extends javax.swing.JFrame {
         });
 
         MImodificar.setText("Modificar");
+        MImodificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MImodificarActionPerformed(evt);
+            }
+        });
         jMenu3.add(MImodificar);
 
         jMenuBar1.add(jMenu3);
@@ -143,7 +148,7 @@ public class Vprincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3ActionPerformed
-      Controlador.VModificar();
+      
     }//GEN-LAST:event_jMenu3ActionPerformed
 
     private void MIinscripccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MIinscripccionActionPerformed
@@ -157,6 +162,10 @@ public class Vprincipal extends javax.swing.JFrame {
     private void MIsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MIsalirActionPerformed
         Controlador.Salir();
     }//GEN-LAST:event_MIsalirActionPerformed
+
+    private void MImodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MImodificarActionPerformed
+        Controlador.VModificar();
+    }//GEN-LAST:event_MImodificarActionPerformed
 
     /**
      * @param args the command line arguments
