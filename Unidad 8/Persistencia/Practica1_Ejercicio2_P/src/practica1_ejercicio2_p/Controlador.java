@@ -6,10 +6,15 @@ import Modelo.UML.*;
 import Vista.*;
 import java.sql.Date;
 import java.sql.Time;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import javax.persistence.Persistence;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -75,7 +80,7 @@ public class Controlador {
     }
     public static boolean Borrar(String nombreEvento){
         boolean borrar=true;
-        ev=new Evento(nombreEvento);
+        ev.setNombre(nombreEvento);
         try{
             eventoBD.destroy(nombreEvento);
             borrar=true;
@@ -90,24 +95,51 @@ public class Controlador {
         vm=new Vmodificar(vp,true);
         vm.setVisible(true);
     }
-    public static boolean Update (String nombreEvento,String lugar,String fecha,String horaInicio,String horaFin,String aforo ){
-        boolean modificar=true;
+    public static void Update (String nombreEvento,String lugar,String fecha,String horaInicio,String horaFin,String aforo ){
         try{
-        Date fechaEvento=Date.valueOf(fecha); 
-        Time horaI=Time.valueOf(horaInicio);
-        Time horaF=Time.valueOf(horaFin);
-        int aforoEvento=Integer.parseInt(aforo);
-        ev=new Evento(nombreEvento,lugar,fechaEvento,horaI,horaF,aforoEvento);
+            
+            //fechaEv=Fecha(fecha);
+            DateFormat formato=new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy",Locale.US); 
+            java.util.Date fechaEvento=formato.parse(fecha);
+            
+            DateTimeFormatter formatoHora=DateTimeFormatter.ofPattern("EEE MMM dd HH:mm:ss zzz yyyy",Locale.US);
+            LocalTime horaIn=LocalTime.parse(horaInicio,formatoHora);
+            Time horaI=Time.valueOf(horaIn);
+            LocalTime horaFi=LocalTime.parse(horaFin,formatoHora);
+            Time horaF=Time.valueOf(horaFi);
+            
+            int aforoEvento=Integer.parseInt(aforo);
+            
+            ev.setNombre(nombreEvento);
+            ev.setLugar(lugar);
+            ev.setFecha(fechaEvento);
+            ev.setHoraInicio(horaI);
+            ev.setHoraFin(horaF);
+            ev.setAforo(aforoEvento);
         
             eventoBD.edit(ev);
         }
         catch(Exception e){
             System.out.println(e.getClass()+e.getMessage());
-            modificar=false;
+            
         }
-        modificar=true;
-        return modificar;
+        
     }
+    /*public static String Fecha(String f){
+       
+       String mes=f.substring(5,7);
+       int m=0;
+       String dia=f.substring(9,10);
+       String año=f.substring(12,15);
+       switch(mes){
+           case 1:
+               if(mes.equals("Jan"))
+                   m=1;
+       }
+       String fecha="dia/mes/año";
+       return fecha;
+      
+    }*/
     public static void Eventos(JComboBox eventos){
         Eventos=new ArrayList();
         try{
@@ -124,11 +156,14 @@ public class Controlador {
         DatosEvento=new ArrayList();
         try{
             ev=eventoBD.findEvento(nombreE);
+            String f=ev.getFecha().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().toString(); 
+            String hi=ev.getHoraInicio().toInstant().atZone(ZoneId.systemDefault()).toLocalTime().toString();
+            String hf=ev.getHoraFin().toInstant().atZone(ZoneId.systemDefault()).toLocalTime().toString();
             DatosEvento.add(ev.getNombre());
             DatosEvento.add(ev.getLugar());
-            DatosEvento.add(ev.getFecha().toString());
-            DatosEvento.add(ev.getHoraInicio().toString());
-            DatosEvento.add(ev.getHoraFin().toString());
+            DatosEvento.add(f);
+            DatosEvento.add(hi);
+            DatosEvento.add(hf);
             DatosEvento.add(Integer.toString(ev.getAforo()));
         }
         catch(Exception e){

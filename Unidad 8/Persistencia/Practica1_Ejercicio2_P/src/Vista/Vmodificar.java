@@ -5,9 +5,12 @@
  */
 package Vista;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Locale;
 import javax.swing.JOptionPane;
 import practica1_ejercicio2_p.Controlador;
+import java.time.format.DateTimeFormatter;
 
 /**
  *
@@ -249,9 +252,9 @@ private String aforo;
         }
         TFnombre.setText(nombre);
         TFlugar.setText(lugar);
-        TFfecha.setText(fecha.substring(0,9));
-        TFhoraInicio.setText(horaI.substring(11,16));
-        TFhoraFin.setText(horaF.substring(11,16));
+        TFfecha.setText(fecha);
+        TFhoraInicio.setText(horaI);
+        TFhoraFin.setText(horaF);
         TFaforo.setText(aforo);
     }//GEN-LAST:event_CBeventosActionPerformed
 
@@ -270,18 +273,20 @@ private String aforo;
     }//GEN-LAST:event_TFaforoActionPerformed
 
     private void BaceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BaceptarActionPerformed
-        boolean mod=false;
-        mod=Controlador.Update(nombre,lugar,fecha,horaI, horaF, aforo);
-      if(mod==true){
-          JOptionPane.showMessageDialog(this,"Evento modificado Correctamente");
-      }
-      Controlador.Volver(this);
+        
+        Controlador.Update(nombre,lugar,fecha,horaI, horaF, aforo);
+         JOptionPane.showMessageDialog(this,"Evento modificado Correctamente");
+         Controlador.Volver(this);
+      
     }//GEN-LAST:event_BaceptarActionPerformed
 
     private void TFfechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TFfechaActionPerformed
          if(!TFfecha.getText().equals(fecha)){
-            fecha=TFfecha.getText();
+            
+            DateTimeFormatter formatoNuevo=DateTimeFormatter.ofPattern("EEE MMM dd HH:mm:ss zzz yyyy");
+            fecha=LocalDate.parse(TFfecha.getText(), formatoNuevo).toString();
         }
+        
         TFhoraInicio.requestFocus();
     }//GEN-LAST:event_TFfechaActionPerformed
 
