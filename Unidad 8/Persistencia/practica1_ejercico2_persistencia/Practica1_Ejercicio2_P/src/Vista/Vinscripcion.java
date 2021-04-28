@@ -429,6 +429,11 @@ private String nEv;
                 if(TFnif.getText().length()!=9)
                     throw new DatoNoValido("El nif de la empresa tiene que tener 9 caracteres");
                 else{
+                    Pattern patron =Pattern.compile("^[0-9]*$");
+                    Matcher m=patron.matcher(TFnif.getText());
+                    if(!m.matches())
+                        throw new DatoNoValido ("El NIF tiene que ser todo numeros");
+                    else
                     //no he puesto lo de la letra porque sin darme cuenta en la base de datos puse int en vez de varchar
                         nif=TFnif.getText();
                         TFnombreEvento.requestFocus();
